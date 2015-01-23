@@ -1,0 +1,8 @@
+Library
+obj
+Temp
+*.csproj
+*.sln
+*.suo
+/Cat-ana/*.csproj
+/Cat-ana/*.sln
