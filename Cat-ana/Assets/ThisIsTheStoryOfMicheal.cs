@@ -12,6 +12,8 @@ public class ThisIsTheStoryOfMicheal : MonoBehaviour {
         //so he lived in a hole underground
         //he lived in a hole underground
         //he lived on his own underground....
+
+	//SEE EVERYONE HAS A SPECIAL SOMEONE. EVEN MICHAEL.
 	
 	}
 	
