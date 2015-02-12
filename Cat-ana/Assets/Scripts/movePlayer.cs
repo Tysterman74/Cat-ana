@@ -3,7 +3,7 @@ using System.Collections;
 
 public class movePlayer : MonoBehaviour 
 {	
-	public GameObject groundCheck;
+	private GameObject groundCheck;
 	public LayerMask whatIsGround;
 
 	// Key inputs
@@ -17,8 +17,14 @@ public class movePlayer : MonoBehaviour
 
 	// Player jumping properties
 	public float jumpSpeed = 600.0f;
-	private float groundHeight; 
+	private float groundHeight;
 
+    private bool hiding = false;
+
+    void Start()
+    {
+        groundCheck = transform.FindChild("GroundCheck").gameObject;
+    }
 
 	void FixedUpdate () 
 	{
@@ -51,4 +57,9 @@ public class movePlayer : MonoBehaviour
 			}
 		}
 	}
+
+    void setHiding(bool hide)
+    {
+        print("MYAAAAH: " + hide);
+    }
 }
