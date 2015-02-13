@@ -60,6 +60,8 @@ public class movePlayer : MonoBehaviour
 
     void setHiding(bool hide)
     {
+        //Player cannot move when hiding
+        //When the player presses F again, movement is given back and the player is shown.
         print("MYAAAAH: " + hide);
     }
 }
