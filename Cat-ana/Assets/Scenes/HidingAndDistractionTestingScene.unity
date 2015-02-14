@@ -151,7 +151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 589646477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523f147048b6cfb4c8f8d8e1b228c728, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b67d5ed6f4b3da4fa5fa1f83b213aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &747398840
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1682742100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 665d88d4c983aa644b001f8294ea0abf, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e8ab98942225924b9a94d1570f49db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   whatIsGround:
@@ -614,9 +614,9 @@ MonoBehaviour:
     m_Bits: 4294966527
   right: 100
   left: 97
-  up: 119
+  up: 32
   speed: 5
-  jumpSpeed: 300
+  jumpSpeed: 600
 --- !u!212 &1682742105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -638,7 +638,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2dbef9f9ec679d4897de3ef0dde2015, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bc13b58e33a0b149a0d23f76ca53395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2077702027
 GameObject:
