@@ -8,3 +8,4 @@ Temp
 /Cat-ana/*.sln
 *.meta
 /Cat-ana/Assets/*.meta
+/Cat-ana/*.userprefs
