@@ -7,5 +7,5 @@ Temp
 /Cat-ana/*.csproj
 /Cat-ana/*.sln
 *.meta
-/Cat-ana/Assets/*.meta
 /Cat-ana/*.userprefs
+!/Cat-ana/Assets/*.meta

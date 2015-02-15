@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .99000001, y: -1.11000001, z: 0}
+  m_LocalPosition: {x: .389838755, y: -.72590667, z: 0}
   m_LocalScale: {x: 1.31920946, y: 1.31920969, z: 1.31920969}
   m_Children:
   - {fileID: 494596}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 151506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 665d88d4c983aa644b001f8294ea0abf, type: 3}
+  m_Script: {fileID: 11500000, guid: 784d0cb8cbc0cb44b872a39a0218b3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   whatIsGround:
@@ -116,9 +116,9 @@ MonoBehaviour:
     m_Bits: 4294966527
   right: 100
   left: 97
-  up: 119
+  up: 32
   speed: 5
-  jumpSpeed: 300
+  jumpSpeed: 600
 --- !u!212 &21251504
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -139,7 +139,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2dbef9f9ec679d4897de3ef0dde2015, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 207af8bd97659c446978e8e543ed0020, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
