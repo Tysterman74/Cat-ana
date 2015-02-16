@@ -55,7 +55,7 @@ Material:
       data:
         first:
           name: _TintColor
-        second: {r: .537313461, g: .537313461, b: .537313461, a: .811764717}
+        second: {r: .45588237, g: .429065764, b: .429065764, a: .811764717}
       data:
         first:
           name: _ReflectColor
