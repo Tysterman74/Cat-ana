@@ -70,7 +70,9 @@ public class EnemyTracking : MonoBehaviour {
 		for (int i = 0; i < detect.Length; i++) {
 			//print (detect[i].collider.name);
 			//Vader should be changed to Player
-			if (detect[i].collider.name == "Vader"){
+            //Tyler: Will, I instead used a tag here. It's a little bit safer
+            //compared to using .name.
+			if (detect[i].collider.tag == "Player"){
 				detectedPlayer = true;
 				count = defaultCount;
 
@@ -82,7 +84,8 @@ public class EnemyTracking : MonoBehaviour {
 				break;
 			}
 			//Cube should be changed to Wall
-			else if (detect[i].collider.name == "Cube")
+            //Tyler: Here I changed it to Wall, and gave the cube gameobjects a tag of "Wall".
+			else if (detect[i].collider.tag == "Wall")
 			{
 				//change direction
 				facingRight = !facingRight;
