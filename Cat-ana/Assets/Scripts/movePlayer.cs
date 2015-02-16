@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class movePlayer : MonoBehaviour 
-{	
+{
+    private ParticleSystem smoke;
 	private GameObject groundCheck;
 	public LayerMask whatIsGround;
 
@@ -25,6 +26,7 @@ public class movePlayer : MonoBehaviour
     void Start()
     {
         groundCheck = transform.FindChild("GroundCheck").gameObject;
+        smoke = transform.FindChild("Smoke").GetComponent<ParticleSystem>();
         renderPlayer = GetComponent<SpriteRenderer>();
     }
 
@@ -86,7 +88,6 @@ public class movePlayer : MonoBehaviour
 			hiding = false;
 		}
 
-		Debug.Log (hiding);
         //Player cannot move when hiding
         //When the player presses F again, movement is given back and the player is shown.
         //print("MYAAAAH: " + hide);
