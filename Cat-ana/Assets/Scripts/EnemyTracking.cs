@@ -8,7 +8,7 @@ public class EnemyTracking : MonoBehaviour {
 	public float defaultSpeed = 3.0f;
 	public float alertedSpeed = 10.0f;
 	public int defaultCount = 100;
-	public float travelingDistance = 15.0f;
+	public float travelingRadius = 10.0f;
 	//public float alertedDistance = 15.0f;
 	
 	 
@@ -51,7 +51,7 @@ public class EnemyTracking : MonoBehaviour {
         direction = Vector2.right;
         
 		directionVector =  new Vector3(viewDistance, 0.0f);
-		radius = new Vector3 (travelingDistance, 0.0f);
+		radius = new Vector3 (travelingRadius, 0.0f);
 		centerPoint = enemy.transform.position;
 		updateEndPoints ();
 
