@@ -82,6 +82,7 @@ public class movePlayer : MonoBehaviour
 		if (hiding == false) 
 		{
 			hiding = true;
+            smoke.Play();
 		}
 		else if (hiding == true)
 		{
