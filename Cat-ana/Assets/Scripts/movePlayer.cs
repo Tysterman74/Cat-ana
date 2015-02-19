@@ -9,7 +9,7 @@ public class movePlayer : MonoBehaviour
 	// Key inputs
 	public KeyCode right;
 	public KeyCode left;
-	public KeyCode up;
+	public KeyCode jump;
 
 	// Player properties
 	public float speed = 5.0f;
@@ -27,13 +27,15 @@ public class movePlayer : MonoBehaviour
 		// Right arrow key pressed?
 		if (Input.GetKey(right)) 
 		{
-			rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
+			//rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
+            transform.Translate(new Vector2(speed, 0.0f));
 		}
 		
 		// Down arrow key pressed?
 		else if (Input.GetKey(left)) 
 		{
-			rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
+			//rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
+            transform.Translate(new Vector2(-speed, 0.0f));
 		}
 
 		else
@@ -45,7 +47,7 @@ public class movePlayer : MonoBehaviour
 		// Up arrow key (jump) pressed once?
 		if(isGround)
 		{
-			if (Input.GetKeyDown(up)) 
+			if (Input.GetKey(jump)) 
 			{
 				rigidbody2D.AddForce(new Vector2(0.0f, jumpSpeed));
 			}
