@@ -7,4 +7,13 @@ Temp
 /Cat-ana/*.csproj
 /Cat-ana/*.sln
 *.meta
-/Cat-ana/Assets/*.meta
+/Cat-ana/*.userprefs
+!/Cat-ana/Assets/*.meta
+!/Cat-ana/ASsets/Scenes/*.meta
+!/Cat-ana/Assets/Prefabs/*.meta
+!/Cat-ana/Assets/Sprites/*.meta
+!/Cat-ana/Assets/Scripts/*.meta
+!/Cat-ana/Assets/Standard Assets/*.meta
+!/Cat-ana/Assets/Standard Assets/Particles/Sources/Materials/*.meta
+!/Cat-ana/Assets/Standard Assets/Particles/Sources/*.meta
+!/Cat-ana/Assets/Standard Assets/Particles/*.meta
