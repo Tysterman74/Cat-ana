@@ -41,7 +41,7 @@ public class movePlayer : MonoBehaviour
             {
                 rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
                 if (hiding)
-                    hiding = false;
+                    setHiding();
             }
 
             // Down arrow key pressed?
@@ -49,7 +49,7 @@ public class movePlayer : MonoBehaviour
             {
                 rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
                 if (hiding)
-                    hiding = false;
+                    setHiding();
             }
             else
             {
@@ -64,7 +64,7 @@ public class movePlayer : MonoBehaviour
                 {
                     rigidbody2D.AddForce(new Vector2(0.0f, jumpSpeed));
                     if (hiding)
-                        hiding = false;
+                        setHiding();
                 }
             }
         //}
@@ -90,10 +90,16 @@ public class movePlayer : MonoBehaviour
 			hiding = true;
             smoke.Play();
             rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
+            gameObject.tag = "Hidden";
+            rigidbody2D.gravityScale = 0.0f;
+            collider2D.isTrigger = true;
 		}
 		else if (hiding == true)
 		{
 			hiding = false;
+            gameObject.tag = "Player";
+            rigidbody2D.gravityScale = 1.5f;
+            collider2D.isTrigger = false;
 		}
 
         //Player cannot move when hiding

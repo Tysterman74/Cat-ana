@@ -1551,6 +1551,18 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6051504, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051504, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5051504, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
+      propertyPath: m_GravityScale
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
   m_RootGameObject: {fileID: 259788186}
