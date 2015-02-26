@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: f7e15434450d3fc4bbb34eaa51de56d6
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ninjacat spritesheet basics_0
+    21300002: ninjacat spritesheet basics_1
+    21300004: ninjacat spritesheet basics_2
+    21300006: ninjacat spritesheet basics_3
+    21300008: ninjacat spritesheet basics_4
+    21300010: ninjacat spritesheet basics_5
+    21300012: ninjacat spritesheet basics_6
+    21300014: ninjacat spritesheet basics_7
+    21300016: ninjacat spritesheet basics_8
+    21300018: ninjacat spritesheet basics_9
+    21300020: ninjacat spritesheet basics_10
+    21300022: ninjacat spritesheet basics_11
+    21300024: ninjacat spritesheet basics_12
+    21300026: ninjacat spritesheet basics_13
+    21300028: ninjacat spritesheet basics_14
+    21300030: ninjacat spritesheet basics_15
+    21300032: ninjacat spritesheet basics_16
+    21300034: ninjacat spritesheet basics_17
+    21300036: ninjacat spritesheet basics_18
+    21300038: ninjacat spritesheet basics_19
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ninjacat spritesheet basics_0
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 727
+        width: 168
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_1
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 727
+        width: 181
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_2
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 727
+        width: 184
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_3
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 728
+        width: 179
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_4
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 727
+        width: 188
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_5
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 727
+        width: 168
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_6
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 462
+        width: 204
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_7
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 462
+        width: 217
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_8
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 468
+        width: 217
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_9
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 458
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_10
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 468
+        width: 211
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_11
+      rect:
+        serializedVersion: 2
+        x: 1112
+        y: 462
+        width: 225
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_12
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 686
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_13
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 151
+        width: 228
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_14
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 165
+        width: 188
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_15
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 328
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_16
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 157
+        width: 195
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_17
+      rect:
+        serializedVersion: 2
+        x: 1118
+        y: 162
+        width: 283
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_18
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 130
+        width: 252
+        height: 257
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ninjacat spritesheet basics_19
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 467
+        width: 222
+        height: 214
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
