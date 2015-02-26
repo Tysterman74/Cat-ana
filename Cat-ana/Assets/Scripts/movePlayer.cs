@@ -45,20 +45,24 @@ public class movePlayer : MonoBehaviour
 
 	void FixedUpdate () 
 	{
-        if (hiding == false)
-        {
+        //if (hiding == false)
+        //{
             bool isGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
 
             // Right arrow key pressed?
             if (Input.GetKey(right))
             {
                 rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
+                if (hiding)
+                    setHiding();
             }
 
             // Down arrow key pressed?
             else if (Input.GetKey(left))
             {
                 rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
+                if (hiding)
+                    setHiding();
             }
             else
             {
@@ -72,6 +76,8 @@ public class movePlayer : MonoBehaviour
                 if (Input.GetKeyDown(up))
                 {
                     rigidbody2D.AddForce(new Vector2(0.0f, jumpSpeed));
+                    if (hiding)
+                        setHiding();
 
                 }
                 if (Input.GetKey(yarn))
@@ -104,8 +110,6 @@ public class movePlayer : MonoBehaviour
 
         }
 
-	}
-
     void Update()
     {
         if (!hiding)
@@ -124,10 +128,17 @@ public class movePlayer : MonoBehaviour
 		{
 			hiding = true;
             smoke.Play();
+            rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
+            gameObject.tag = "Hidden";
+            rigidbody2D.gravityScale = 0.0f;
+            collider2D.isTrigger = true;
 		}
 		else if (hiding == true)
 		{
 			hiding = false;
+            gameObject.tag = "Player";
+            rigidbody2D.gravityScale = 1.5f;
+            collider2D.isTrigger = false;
 		}
 
         //Player cannot move when hiding
