@@ -83,6 +83,13 @@ public class movePlayer : MonoBehaviour
         }
     }
 
+    IEnumerator resetCollider()
+    {
+        //Get executed normally
+        yield return new WaitForSeconds(1.0f);
+        //Do this after 1 second. Reset Colliders.
+    }
+
     void setHiding()
     {
 		if (hiding == false) 
@@ -91,19 +98,19 @@ public class movePlayer : MonoBehaviour
             smoke.Play();
             rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
             gameObject.tag = "Hidden";
+            //Turns off collider and rigidbody.
             rigidbody2D.gravityScale = 0.0f;
             collider2D.isTrigger = true;
+            StartCoroutine(resetCollider());
 		}
 		else if (hiding == true)
 		{
 			hiding = false;
             gameObject.tag = "Player";
+            //Turns on collider and rigidbody.
             rigidbody2D.gravityScale = 1.5f;
             collider2D.isTrigger = false;
 		}
-
-        //Player cannot move when hiding
-        //When the player presses F again, movement is given back and the player is shown.
         //print("MYAAAAH: " + hide);
     }
 }
