@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ConveyerBelt : MonoBehaviour {
 
-    public float speed = 0.1f;
+    public float speed = 2.5f;
     public bool left = false;
     private bool collide = false;
     private GameObject player;
@@ -15,7 +15,8 @@ public class ConveyerBelt : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (collide) {
-            player.transform.Translate(new Vector2(left ? -speed : speed, 0));
+            //player.transform.Translate(new Vector2(left ? -speed : speed, 0));
+            player.rigidbody2D.velocity += new Vector2(left ? -speed : speed, 0);
         }
 	}
 
