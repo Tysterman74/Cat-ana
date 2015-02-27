@@ -6,14 +6,26 @@ public class movePlayer : MonoBehaviour
     private ParticleSystem smoke;
 	private GameObject groundCheck;
 	public LayerMask whatIsGround;
+    private int charge;
+    public int maxcharge;
+    private GameObject yarnball;
+    private bool yarnballThrown = false;
 
 	// Key inputs
 	public KeyCode right;
 	public KeyCode left;
-	public KeyCode up;
+	public KeyCode jump;
+    public KeyCode yarn;
 
 	// Player properties
 	public float speed = 5.0f;
+
+    Animator anim;
+
+    public KeyCode attack;
+    public bool attackClicked = false;
+    public float attackLength = 0.625f;
+    public float attackTime = 0.0f;
 
 
 	// Player jumping properties
@@ -22,54 +34,91 @@ public class movePlayer : MonoBehaviour
 
     private SpriteRenderer renderPlayer;
     private bool hiding = false;
+    private bool isGround = true;
+    private bool facingRight = true;
+
+    IEnumerator resetCollider()
+    {
+        yield return new WaitForSeconds(1.0f);
+        rigidbody2D.gravityScale = 1.5f;
+        collider2D.isTrigger = false;
+    }
 
     void Start()
     {
+        
+        anim = GetComponent<Animator>();
         groundCheck = transform.FindChild("GroundCheck").gameObject;
         smoke = transform.FindChild("Smoke").GetComponent<ParticleSystem>();
         renderPlayer = GetComponent<SpriteRenderer>();
+        charge = 0;
+        yarnball = transform.FindChild("YarnBall").gameObject;
     }
 
-	void FixedUpdate () 
-	{
-        //if (hiding == false)
+    void FixedUpdate()
+    {
+        //if nur(hiding == false)
         //{
-            bool isGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
+            isGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
 
             // Right arrow key pressed?
             if (Input.GetKey(right))
             {
                 rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
+                transform.eulerAngles = new Vector2(0, 0);
+                anim.SetFloat("speed", speed);
                 if (hiding)
                     setHiding();
+                facingRight = true;
             }
 
-            // Down arrow key pressed?
+            // Left arrow key pressed?
             else if (Input.GetKey(left))
             {
                 rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
+                transform.eulerAngles = new Vector2(0, 180);
+                anim.SetFloat("speed", speed);
                 if (hiding)
                     setHiding();
+                facingRight = false;
             }
             else
             {
-                rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
+                //rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
+                anim.SetFloat("speed", 0.0f);
             }
 
+            if (attackClicked)
+            {
+                attackTime += Time.deltaTime;
 
-            // Up arrow key (jump) pressed once?
+                if (attackTime >= attackLength)
+                {
+                    attackClicked = false;
+                    anim.SetBool("attackClicked", attackClicked);
+                    attackTime = 0.0f;
+                }
+            }
+
             if (isGround)
             {
-                if (Input.GetKeyDown(up))
+                if (Input.GetKey(jump))
                 {
                     rigidbody2D.AddForce(new Vector2(0.0f, jumpSpeed));
                     if (hiding)
                         setHiding();
+
                 }
             }
-        //}
 
-	}
+            // Attack key (mouse) pressed once?
+            if (Input.GetKey(attack))
+            {
+                attackClicked = true;
+                anim.SetBool("attackClicked", attackClicked);   
+            
+            }
+        }
 
     void Update()
     {
@@ -79,15 +128,35 @@ public class movePlayer : MonoBehaviour
         }
         else
         {
-            renderPlayer.color = new Color(0f, 0f, 0f, 1f);
+            renderPlayer.color = new Color(1f, 1f, 1f, 0.5f);
         }
-    }
 
-    IEnumerator resetCollider()
-    {
-        //Get executed normally
-        yield return new WaitForSeconds(1.0f);
-        //Do this after 1 second. Reset Colliders.
+        // Up arrow key (jump) pressed once?
+        if (isGround)
+        {
+            if (Input.GetKey(yarn))
+            {
+                print("charge");
+
+                charge += 1;
+                if (charge > 100)
+                {
+                    charge = 100;
+                }
+
+            }
+            if (Input.GetKeyUp(yarn))
+            {
+                yarnball.SendMessage("setDirection", facingRight);
+                print("thrown");
+                print(charge);
+                rigidbody2D.gravityScale = 0.0f;
+                collider2D.isTrigger = true;
+                yarnball.SendMessage("launchYarnball", charge);
+                StartCoroutine(resetCollider());
+                charge = 0;
+            }
+        }
     }
 
     void setHiding()
@@ -98,19 +167,22 @@ public class movePlayer : MonoBehaviour
             smoke.Play();
             rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
             gameObject.tag = "Hidden";
-            //Turns off collider and rigidbody.
             rigidbody2D.gravityScale = 0.0f;
             collider2D.isTrigger = true;
-            StartCoroutine(resetCollider());
 		}
 		else if (hiding == true)
 		{
 			hiding = false;
             gameObject.tag = "Player";
-            //Turns on collider and rigidbody.
             rigidbody2D.gravityScale = 1.5f;
             collider2D.isTrigger = false;
 		}
-        //print("MYAAAAH: " + hide);
+	}
+
+    void PickupYarn()
+    {
+        yarnball.transform.position = transform.position;
+        yarnball.transform.parent = transform;
+
     }
 }

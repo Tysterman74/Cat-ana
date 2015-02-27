@@ -29,6 +29,7 @@ public class BoxHidingScript : MonoBehaviour {
                 //Send message to player that we are hiding.
 				col.gameObject.SendMessage("setHiding");
             }
+         
         }
     }
 
