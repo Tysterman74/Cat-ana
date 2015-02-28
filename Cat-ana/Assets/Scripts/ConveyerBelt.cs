@@ -16,7 +16,7 @@ public class ConveyerBelt : MonoBehaviour {
 	void Update () {
         if (collide) {
             //player.transform.Translate(new Vector2(left ? -speed : speed, 0));
-            player.rigidbody2D.velocity += new Vector2(left ? -speed : speed, 0);
+            player.rigidbody2D.velocity -= new Vector2(left ? -speed : speed, 0);
         }
 	}
 
