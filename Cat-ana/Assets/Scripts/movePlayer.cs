@@ -19,6 +19,7 @@ public class movePlayer : MonoBehaviour
 
 	// Player properties
 	public float speed = 5.0f;
+    public float maxSpeed = 7.5f;
 
     Animator anim;
 
@@ -32,6 +33,7 @@ public class movePlayer : MonoBehaviour
 	public float jumpSpeed = 600.0f;
 	private float groundHeight;
 
+    private Vector2 externalVelocity; 
     private SpriteRenderer renderPlayer;
     private bool hiding = false;
     private bool isGround = true;
@@ -88,6 +90,11 @@ public class movePlayer : MonoBehaviour
                 anim.SetFloat("speed", 0.0f);
             }
 
+            if (Mathf.Abs(rigidbody2D.velocity.x) < maxSpeed)
+                rigidbody2D.velocity += externalVelocity;
+            else
+                rigidbody2D.velocity = new Vector2(facingRight ? maxSpeed : -maxSpeed, rigidbody2D.velocity.y);
+            
             if (attackClicked)
             {
                 attackTime += Time.deltaTime;
@@ -119,6 +126,11 @@ public class movePlayer : MonoBehaviour
             
             }
         }
+
+    public void setExternalVelocity(Vector2 vel)
+    {
+        externalVelocity = vel;
+    }
 
     void Update()
     {
@@ -184,5 +196,10 @@ public class movePlayer : MonoBehaviour
         yarnball.transform.position = transform.position;
         yarnball.transform.parent = transform;
 
+    }
+
+    public bool isRight()
+    {
+        return facingRight;
     }
 }
