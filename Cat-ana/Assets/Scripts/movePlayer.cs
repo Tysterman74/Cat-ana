@@ -61,71 +61,77 @@ public class movePlayer : MonoBehaviour
     {
         //if nur(hiding == false)
         //{
-            isGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
+        isGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
 
-            // Right arrow key pressed?
-            if (Input.GetKey(right))
-            {
-                rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
-                transform.eulerAngles = new Vector2(0, 0);
-                anim.SetFloat("speed", speed);
-                if (hiding)
-                    setHiding();
-                facingRight = true;
-            }
+        // Right arrow key pressed?
+        Vector2 test = new Vector2(0,rigidbody2D.velocity.y);
+        if (Input.GetKey(right))
+        {
+            test = new Vector2(speed, rigidbody2D.velocity.y);
+            transform.eulerAngles = new Vector2(0, 0);
+            anim.SetFloat("speed", speed);
+            if (hiding)
+                setHiding();
+            facingRight = true;
+        }
 
-            // Left arrow key pressed?
-            else if (Input.GetKey(left))
-            {
-                rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
-                transform.eulerAngles = new Vector2(0, 180);
-                anim.SetFloat("speed", speed);
-                if (hiding)
-                    setHiding();
-                facingRight = false;
-            }
-            else
-            {
-                //rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
-                anim.SetFloat("speed", 0.0f);
-            }
+        // Left arrow key pressed?
+        else if (Input.GetKey(left))
+        {
+            test = new Vector2(-speed, rigidbody2D.velocity.y);
+            transform.eulerAngles = new Vector2(0, 180);
+            anim.SetFloat("speed", speed);
+            if (hiding)
+                setHiding();
+            facingRight = false;
+        }
+        else
+        {
+            //rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
+            anim.SetFloat("speed", 0.0f);
+        }
 
-            if (Mathf.Abs(rigidbody2D.velocity.x) < maxSpeed)
-                rigidbody2D.velocity += externalVelocity;
-            else
-                rigidbody2D.velocity = new Vector2(facingRight ? maxSpeed : -maxSpeed, rigidbody2D.velocity.y);
+        test += externalVelocity;
+        print("Move Player: " + rigidbody2D.velocity);
+        print("External Velocity: " + externalVelocity);
+        rigidbody2D.velocity = test;
+        //if (Mathf.Abs(rigidbody2D.velocity.x) < maxSpeed)
+        //    rigidbody2D.velocity += externalVelocity;
+        //else
+        //    rigidbody2D.velocity = new Vector2(facingRight ? maxSpeed : -maxSpeed, rigidbody2D.velocity.y);
             
-            if (attackClicked)
+
+        if (attackClicked)
+        {
+            attackTime += Time.deltaTime;
+
+            if (attackTime >= attackLength)
             {
-                attackTime += Time.deltaTime;
-
-                if (attackTime >= attackLength)
-                {
-                    attackClicked = false;
-                    anim.SetBool("attackClicked", attackClicked);
-                    attackTime = 0.0f;
-                }
-            }
-
-            if (isGround)
-            {
-                if (Input.GetKey(jump))
-                {
-                    rigidbody2D.AddForce(new Vector2(0.0f, jumpSpeed));
-                    if (hiding)
-                        setHiding();
-
-                }
-            }
-
-            // Attack key (mouse) pressed once?
-            if (Input.GetKey(attack))
-            {
-                attackClicked = true;
-                anim.SetBool("attackClicked", attackClicked);   
-            
+                attackClicked = false;
+                anim.SetBool("attackClicked", attackClicked);
+                attackTime = 0.0f;
             }
         }
+
+        if (isGround)
+        {
+            if (Input.GetKey(jump))
+            {
+                rigidbody2D.AddForce(new Vector2(0.0f, jumpSpeed));
+                if (hiding)
+                    setHiding();
+
+            }
+        }
+
+        // Attack key (mouse) pressed once?
+        if (Input.GetKey(attack))
+        {
+            attackClicked = true;
+            anim.SetBool("attackClicked", attackClicked);   
+            
+        }
+    }
 
     public void setExternalVelocity(Vector2 vel)
     {

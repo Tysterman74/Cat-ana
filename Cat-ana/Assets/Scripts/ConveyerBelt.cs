@@ -17,54 +17,28 @@ public class ConveyerBelt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (collide)
-        {
-            //player.transform.Translate(new Vector2(left ? -speed : speed, 0));
-            Vector2 conveyorBeltSpeed = new Vector2((left ? -speed : speed), 0);
-            //playerComponent.setExternalVelocity(conveyorBeltSpeed);
-            /*if (left)
-            {
-                if (playerComponent.isRight())
-                {
-                    //player.rigidbody2D.velocity 
-                    if (player.rigidbody2D.velocity.x < maxSpeed)
-                        player.rigidbody2D.velocity -= conveyorBeltSpeed;
-                    else
-                        player.rigidbody2D.velocity = new Vector2(maxSpeed, 0);
-                }
-                else
-                {
-                    print("KEEEE-HYAH");
-                    if (player.rigidbody2D.velocity.x > -maxSpeed)
-                        player.rigidbody2D.velocity += conveyorBeltSpeed;
-                    else
-                        player.rigidbody2D.velocity = new Vector2(-maxSpeed, 0);
-                }
-            }
-            else
-            {
-
-            }*/
-            //player.rigidbody2D.velocity += new Vector2(left ? -speed : speed, 0);
-        }
-        else
-        {
-            playerComponent.setExternalVelocity(new Vector2(0, 0));
-        }
 	}
 
     void OnCollisionStay2D(Collision2D col)
     {
-        print("KEE-HYAH");
+        if (col.gameObject.tag == "Player")
+        {
+            playerComponent.setExternalVelocity(new Vector2(left ? -speed : speed, 0));
+            //Rigidbody2D playerrigidbody = col.gameObject.rigidbody2D;
+            //playerrigidbody.velocity = speed * Time.deltaTime * transform.forward;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            playerComponent.setExternalVelocity(new Vector2(0, 0));
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Player")
             collide = true;
-    }
-
-    void OnCollisionExit2D(Collision2D col) {
-        if (col.gameObject.tag == "Player")
-            collide = false;
     }
 }
