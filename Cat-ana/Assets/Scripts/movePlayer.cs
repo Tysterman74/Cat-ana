@@ -19,8 +19,8 @@ public class movePlayer : MonoBehaviour
 
     public KeyCode attack;
     public bool attackClicked = false;
-    public float attackLength = 0.625f;
-    public float attackTime = 0.0f;
+    float attackLength = 0.625f;
+    float attackTime = 0.0f;
 
 
 	// Player jumping properties
