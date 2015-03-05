@@ -18,6 +18,8 @@ public class Yarnball : MonoBehaviour {
         if (externalVelocity.x != 0)
             rigidbody2D.velocity = externalVelocity;
 
+	void Update () {
+
 	}
 
     void OnCollisionEnter2D(Collision2D col)

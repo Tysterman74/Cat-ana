@@ -7,8 +7,10 @@ public class EnemyTracking : MonoBehaviour {
 	public float hitDistance = 1.0f;
 	public float defaultSpeed = 3.0f;
 	public float alertedSpeed = 10.0f;
-	public int defaultCount = 100;
+	public int defaultAlertTimer = 100; // Enemy will not be alarmed after certain time. (This may not be needed)
+    public int defaultTurnAroundTimer = 400; //even if the enemy doesn't reach the end point, it will turn around after certain time
 	public float travelingRadius = 10.0f;
+    public bool facingRight = true; //true means right
 	//public float alertedDistance = 15.0f;
 	
 	 
@@ -17,7 +19,6 @@ public class EnemyTracking : MonoBehaviour {
     private GameObject enemy;
 
 
-    private bool facingRight;
 
     private Vector2 direction;
 
@@ -25,7 +26,8 @@ public class EnemyTracking : MonoBehaviour {
 	
 	private float velocity;
 	private bool detectedPlayer;
-	private int count; //this is for the time when enemy loses the sight of player (sort of timer)
+	private int alertTimer; //this is for the time when enemy loses the sight of player
+    private int turnAroundTimer; //this is for the time when enemy needs to turn around
 	private Vector3 directionVector;
 
 	private Vector3 centerPoint;
@@ -34,6 +36,20 @@ public class EnemyTracking : MonoBehaviour {
 	//temp
 	private LineRenderer detectionLine;
 	
+
+
+    //Things to work on:
+    //1. After certain amount of time, the enemy will turn even if it didn't reach the end point
+    //2. Enemy will sometime stand idle to add a sense of random behaviour
+    //3. Child classes for enemy: melee, range, alarm, etc.
+    //4. Implement attack for enemy: melee, range
+    //
+
+
+
+
+
+
 	// Use this for initialization
 	void Start () {
 	    //Find the children of this gameobject, which is Endpoint1 and Endpoint2
@@ -41,19 +57,20 @@ public class EnemyTracking : MonoBehaviour {
         point1 = transform.FindChild("EndPoint1").gameObject;
         point2 = transform.FindChild("EndPoint2").gameObject;
         enemy = transform.FindChild("Enemy").gameObject;
+        
 
 
-        facingRight = true;
+        
 
 		detectedPlayer = false;
 		velocity = defaultSpeed;
-		count = defaultCount;
+		alertTimer = defaultAlertTimer;
         direction = Vector2.right;
         
 		directionVector =  new Vector3(viewDistance, 0.0f);
 		radius = new Vector3 (travelingRadius, 0.0f);
 		centerPoint = enemy.transform.position;
-		updateEndPoints ();
+		//updateEndPoints ();
 
 		//temp
 		detectionLine = enemy.GetComponent<LineRenderer>();
@@ -69,57 +86,78 @@ public class EnemyTracking : MonoBehaviour {
 		//raise detection flag if player is detected, reset detection counter
 		for (int i = 0; i < detect.Length; i++) {
 			//print (detect[i].collider.name);
-			//Vader should be changed to Player
-            //Tyler: Will, I instead used a tag here. It's a little bit safer
-            //compared to using .name.
+
 			if (detect[i].collider.tag == "Player"){
 				detectedPlayer = true;
-				count = defaultCount;
+                //reset the timer
+                alertTimer = defaultAlertTimer;
 
 				//for complex AI on how enemy reacts to player's presence
-				updateCenterPoint (1,detect[i].collider.transform.position);
+				//updateCenterPoint (1,detect[i].collider.transform.position);
 
 				//this break exists so that enemy ignores wall detection once it detects the player
 				//this may not work if the wall is detected before the player
 				break;
 			}
-			//Cube should be changed to Wall
-            //Tyler: Here I changed it to Wall, and gave the cube gameobjects a tag of "Wall".
-			else if (detect[i].collider.tag == "Wall")
-			{
-				//change direction
-				facingRight = !facingRight;
-				//and update center point
-				updateCenterPoint (2,enemy.transform.position);
-			}
+
+            else if (detect[i].collider.tag == "Yarnball")
+            {
+
+            }
+
+            //this may be changed to else statement such that enemy turns around if it detects anything but player.
+            else if (detect[i].collider.tag == "Wall")
+            {
+                //change direction
+                facingRight = !facingRight;
+                //and update center point
+                //updateCenterPoint(2, enemy.transform.position);
+            }
 
 		}
 
 		RaycastHit2D [] hit = Physics2D.RaycastAll(enemy.transform.position, direction, hitDistance);
 		for (int i = 0; i < hit.Length; i++) {
 			//Vader should be changed to Player
-			if (hit[i].collider.name == "Vader" && detectedPlayer){
+			if (hit[i].collider.tag == "Player" && detectedPlayer){
 				//attack player
 
 				break;
 			}
 		}
 		//always update end point based on the center point calculation.
-		updateEndPoints();
+		//updateEndPoints();
 
 		//special case: if player is detected, ignore normal behaviour
-		if (detectedPlayer){
-			velocity = alertedSpeed;
-			updateSpecialDirection();
+        if (detectedPlayer)
+        {
+            velocity = alertedSpeed;
+            updateSpecialDirection();
 
 
 
-		}
-		else
-			//if collides with endpoints while not detected
-			if(intersectEndPoint())
-			//then update its direction
-				updateDirection();
+        }
+        else
+        {
+            //decrease direction timer by 1 every tick
+            turnAroundTimer -= 1;
+
+            //if collides with endpoints while not detected
+            if (intersectEndPoint())
+            {
+                //then update its direction
+                updateDirection();
+                //and reset timer
+                turnAroundTimer = defaultTurnAroundTimer;
+            }
+            else if (turnAroundTimer <= 0)
+            {
+                facingRight = !facingRight;
+                turnAroundTimer = defaultTurnAroundTimer;
+            }
+            //print(turnAroundTimer);
+
+        }
 		
         //based on the above calculation, set the actual direction and detection line
         if (facingRight)
@@ -162,13 +200,13 @@ public class EnemyTracking : MonoBehaviour {
 		{
 			velocity = alertedSpeed;
 			//if player has not been detected for certain time, then turn off the alarm state
-			if (count <= 0)
+			if (alertTimer <= 0)
 			{
 				detectedPlayer = false;
-				count = defaultCount;
+                alertTimer = defaultAlertTimer;
 			}
 			else
-				count -= 1;
+				alertTimer -= 1;
 		}
 		//if player is not detected, set speed to default speed
 		else
