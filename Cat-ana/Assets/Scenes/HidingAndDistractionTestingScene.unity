@@ -223,6 +223,7 @@ MonoBehaviour:
   jump: 32
   yarn: 99
   speed: 5
+  maxSpeed: 7.5
   attack: 323
   attackClicked: 0
   attackLength: .625
@@ -584,8 +585,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb79bb189785db9408a3b1cfba135203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  left: 0
+  speed: 2
+  maxSpeed: 3
+  left: 1
 --- !u!61 &670019980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1766,11 +1768,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11472032, guid: 3a8d634a0b7039844806c933f7d4ac9a, type: 2}
       propertyPath: left
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11472032, guid: 3a8d634a0b7039844806c933f7d4ac9a, type: 2}
       propertyPath: speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a8d634a0b7039844806c933f7d4ac9a, type: 2}
