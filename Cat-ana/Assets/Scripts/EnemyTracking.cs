@@ -70,7 +70,7 @@ public class EnemyTracking : MonoBehaviour {
 		directionVector =  new Vector3(viewDistance, 0.0f);
 		radius = new Vector3 (travelingRadius, 0.0f);
 		centerPoint = enemy.transform.position;
-		updateEndPoints ();
+		//updateEndPoints ();
 
 		//temp
 		detectionLine = enemy.GetComponent<LineRenderer>();
@@ -93,21 +93,26 @@ public class EnemyTracking : MonoBehaviour {
                 alertTimer = defaultAlertTimer;
 
 				//for complex AI on how enemy reacts to player's presence
-				updateCenterPoint (1,detect[i].collider.transform.position);
+				//updateCenterPoint (1,detect[i].collider.transform.position);
 
 				//this break exists so that enemy ignores wall detection once it detects the player
 				//this may not work if the wall is detected before the player
 				break;
 			}
 
+            else if (detect[i].collider.tag == "Yarnball")
+            {
+
+            }
+
             //this may be changed to else statement such that enemy turns around if it detects anything but player.
-			else if (detect[i].collider.tag == "Wall")
-			{
-				//change direction
-				facingRight = !facingRight;
-				//and update center point
-				updateCenterPoint (2,enemy.transform.position);
-			}
+            else if (detect[i].collider.tag == "Wall")
+            {
+                //change direction
+                facingRight = !facingRight;
+                //and update center point
+                //updateCenterPoint(2, enemy.transform.position);
+            }
 
 		}
 
@@ -121,7 +126,7 @@ public class EnemyTracking : MonoBehaviour {
 			}
 		}
 		//always update end point based on the center point calculation.
-		updateEndPoints();
+		//updateEndPoints();
 
 		//special case: if player is detected, ignore normal behaviour
         if (detectedPlayer)
@@ -150,7 +155,7 @@ public class EnemyTracking : MonoBehaviour {
                 facingRight = !facingRight;
                 turnAroundTimer = defaultTurnAroundTimer;
             }
-            print(turnAroundTimer);
+            //print(turnAroundTimer);
 
         }
 		
