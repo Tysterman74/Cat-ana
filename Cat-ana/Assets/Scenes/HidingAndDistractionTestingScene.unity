@@ -194,7 +194,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 963670844}
   m_GameObject: {fileID: 259788186}
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 1.25
   m_AngularDrag: .5
   m_GravityScale: 1.5
   m_FixedAngle: 1
@@ -1910,7 +1910,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 5051504, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
       propertyPath: m_LinearDrag
-      value: 2
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 11451504, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
       propertyPath: jumpSpeed
