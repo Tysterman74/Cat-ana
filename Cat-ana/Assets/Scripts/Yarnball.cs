@@ -14,9 +14,11 @@ public class Yarnball : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+    void FixedUpdate()
+    {
         if (externalVelocity.x != 0)
             rigidbody2D.velocity = externalVelocity;
+    }
 
 	void Update () {
 
