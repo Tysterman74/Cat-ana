@@ -100,14 +100,19 @@ public class EnemyTracking : MonoBehaviour {
 				break;
 			}
 
+            else if (detect[i].collider.tag == "Yarnball")
+            {
+
+            }
+
             //this may be changed to else statement such that enemy turns around if it detects anything but player.
-			else if (detect[i].collider.tag == "Wall")
-			{
-				//change direction
-				facingRight = !facingRight;
-				//and update center point
-				updateCenterPoint (2,enemy.transform.position);
-			}
+            else if (detect[i].collider.tag == "Wall")
+            {
+                //change direction
+                facingRight = !facingRight;
+                //and update center point
+                updateCenterPoint(2, enemy.transform.position);
+            }
 
 		}
 
