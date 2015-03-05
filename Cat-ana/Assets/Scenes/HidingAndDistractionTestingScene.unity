@@ -83,7 +83,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 6ab983594e586994c852503467026032, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.94000006
+      value: 3.30999994
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ab983594e586994c852503467026032, type: 2}
       propertyPath: m_LocalPosition.y
@@ -297,6 +297,74 @@ MonoBehaviour:
   attackDistance: {fileID: 1727909368}
   hit: 0
   attack: 323
+--- !u!1 &350204755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 350204759}
+  - 33: {fileID: 350204758}
+  - 23: {fileID: 350204757}
+  - 61: {fileID: 350204756}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &350204756
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350204755}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .99999994, y: 1}
+  m_Center: {x: 0, y: 0}
+--- !u!23 &350204757
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350204755}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &350204758
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350204755}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &350204759
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350204755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: .800000012, z: 0}
+  m_LocalScale: {x: 6.53702879, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &359562641
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +380,7 @@ GameObject:
   - 114: {fileID: 359562647}
   m_Layer: 8
   m_Name: YarnBall
-  m_TagString: Untagged
+  m_TagString: YarnBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,7 +424,7 @@ Rigidbody2D:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!23 &359562645
 Renderer:
   m_ObjectHideFlags: 0
@@ -467,7 +535,7 @@ Transform:
   m_PrefabInternal: {fileID: 11758291}
   m_GameObject: {fileID: 589646477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.94000006, y: -1.24000001, z: 1.10000002}
+  m_LocalPosition: {x: 3.30999994, y: -1.24000001, z: 1.10000002}
   m_LocalScale: {x: 1.67103529, y: 1.67103636, z: 1.67103636}
   m_Children: []
   m_Father: {fileID: 0}
@@ -607,7 +675,7 @@ Transform:
   m_PrefabInternal: {fileID: 783917230}
   m_GameObject: {fileID: 670019976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.01000023, y: 1.25999999, z: 0}
+  m_LocalPosition: {x: -6.80000019, y: -.189999998, z: 0}
   m_LocalScale: {x: 8.78688431, y: .0600605607, z: .800808907}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1736,11 +1804,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 447216, guid: 3a8d634a0b7039844806c933f7d4ac9a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.01000023
+      value: -6.80000019
       objectReference: {fileID: 0}
     - target: {fileID: 447216, guid: 3a8d634a0b7039844806c933f7d4ac9a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.25999999
+      value: -.189999998
       objectReference: {fileID: 0}
     - target: {fileID: 447216, guid: 3a8d634a0b7039844806c933f7d4ac9a, type: 2}
       propertyPath: m_LocalPosition.z
