@@ -78,6 +78,7 @@ public class movePlayer : MonoBehaviour
         // Left arrow key pressed?
         else if (Input.GetKey(left))
         {
+            print("test");
             test = new Vector2(-speed, rigidbody2D.velocity.y);
             transform.eulerAngles = new Vector2(0, 180);
             anim.SetFloat("speed", speed);
