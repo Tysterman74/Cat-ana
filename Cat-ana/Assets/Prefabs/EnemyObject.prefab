@@ -180,13 +180,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad6de057500df2d459cc364b38bbcac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 36793c9c8c03b514e9968bec68b3ee79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDistance: 15
-  defaultSpeed: 5
+  viewDistance: 5
+  hitDistance: 1
+  defaultSpeed: 3
   alertedSpeed: 10
   defaultCount: 100
+  travelingRadius: 10
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1

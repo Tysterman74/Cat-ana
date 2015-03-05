@@ -182,7 +182,7 @@ Animator:
   m_GameObject: {fileID: 151506}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 982fd3c4c15f9ac40bb0cbfc22314278, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2a25639c6bdf5f64f8129dca8824c54c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -217,14 +217,15 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294966527
+  maxcharge: 0
   right: 100
   left: 97
   jump: 32
+  yarn: 0
   speed: 5
+  maxSpeed: 7.5
   attack: 323
   attackClicked: 0
-  attackLength: .625
-  attackTime: 0
   jumpSpeed: 600
 --- !u!198 &19800000
 ParticleSystem:
