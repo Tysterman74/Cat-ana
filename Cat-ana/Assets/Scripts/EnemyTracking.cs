@@ -10,7 +10,7 @@ public class EnemyTracking : MonoBehaviour {
 	public int defaultAlertTimer = 100; // Enemy will not be alarmed after certain time. (This may not be needed)
     public int defaultTurnAroundTimer = 400; //even if the enemy doesn't reach the end point, it will turn around after certain time
 	public float travelingRadius = 10.0f;
-    public bool facingRight = true; //true means right
+    public bool facingRight; //true means right
 	//public float alertedDistance = 15.0f;
 	
 	 
