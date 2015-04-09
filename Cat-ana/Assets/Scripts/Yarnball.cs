@@ -17,7 +17,7 @@ public class Yarnball : MonoBehaviour {
     void FixedUpdate()
     {
         if (externalVelocity.x != 0)
-            rigidbody2D.velocity = externalVelocity;
+            GetComponent<Rigidbody2D>().velocity = externalVelocity;
     }
 
 	void Update () {
