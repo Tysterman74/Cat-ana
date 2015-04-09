@@ -8,10 +8,12 @@ public class movePlayer : MonoBehaviour
 	public LayerMask whatIsGround;
     private int charge;
     public int maxcharge;
+
     private GameObject yarnball;
     private bool yarnballThrown = false;
 
-	// Key inputs
+	// Key inputs for player actions
+    // Used for different player actions
 	public KeyCode right;
 	public KeyCode left;
 	public KeyCode jump;
@@ -30,6 +32,7 @@ public class movePlayer : MonoBehaviour
 
 
 	// Player jumping properties
+    //Possibly change this to velocity.
 	public float jumpSpeed = 600.0f;
 	private float groundHeight;
 
@@ -59,15 +62,21 @@ public class movePlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if nur(hiding == false)
-        //{
         isGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
 
         // Right arrow key pressed?
-        Vector2 test = new Vector2(0,GetComponent<Rigidbody2D>().velocity.y);
+
+        // TODO:
+        // Y velocity, define a maxHeight for how far the player jumps as well as reset y velocity to 0 when you're ground.
+
+        //Placeholder for calculating external forces.
+        Vector2 totalVelocity = new Vector2(0,GetComponent<Rigidbody2D>().velocity.y);
+
+        //Used Get Key to read in the input.
         if (Input.GetKey(right))
         {
-            test = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+            //Set the velocity for what the PLAYER itself has.
+            totalVelocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
             transform.eulerAngles = new Vector2(0, 0);
             anim.SetFloat("speed", 1);
             if (hiding)
@@ -78,8 +87,9 @@ public class movePlayer : MonoBehaviour
         // Left arrow key pressed?
         else if (Input.GetKey(left))
         {
-            print("test");
-            test = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+            print("totalVelocity");
+            //Set the velocity for what the PLAYER itself has.
+            totalVelocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
             transform.eulerAngles = new Vector2(0, 180);
             anim.SetFloat("speed", 1);
             if (hiding)
@@ -92,10 +102,12 @@ public class movePlayer : MonoBehaviour
             anim.SetFloat("speed", -1.0f);
         }
 
-        test += externalVelocity;
+        //Add in the external velocity that other forces are acting on the player.
+        totalVelocity += externalVelocity;
         //print("Move Player: " + GetComponent<Rigidbody2D>().velocity);
-        print("External Velocity: " + externalVelocity);
-        GetComponent<Rigidbody2D>().velocity = test;
+        //print("External Velocity: " + externalVelocity);
+
+        GetComponent<Rigidbody2D>().velocity = totalVelocity;
         //if (Mathf.Abs(rigidbody2D.velocity.x) < maxSpeed)
         //    rigidbody2D.velocity += externalVelocity;
         //else
@@ -141,6 +153,7 @@ public class movePlayer : MonoBehaviour
 
     void Update()
     {
+        //Makes it transparent when hiding.
         if (!hiding)
         {
             renderPlayer.color = new Color(1f, 1f, 1f, 1f);
@@ -150,9 +163,12 @@ public class movePlayer : MonoBehaviour
             renderPlayer.color = new Color(1f, 1f, 1f, 0.5f);
         }
 
-        // Up arrow key (jump) pressed once?
+        //When grounded, If holding the button for yarn then release.
         if (isGround)
         {
+            //TODO:
+            //Add particle effects and asethics to charge
+            //Used for charging the yarn
             if (Input.GetKey(yarn))
             {
                 print("charge");
@@ -164,6 +180,7 @@ public class movePlayer : MonoBehaviour
                 }
 
             }
+            //When release yarn button
             if (Input.GetKeyUp(yarn))
             {
                 yarnball.SendMessage("setDirection", facingRight);

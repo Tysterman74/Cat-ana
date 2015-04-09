@@ -160,7 +160,7 @@ public class EnemyTracking : MonoBehaviour {
             //facingRight != facingRight;
             facingRight = !facingRight;
             //turning = true;
-            updateDirection();
+            //updateDirection();
             atEndPoint = false;
             //print(turnAroundTimer);
 
@@ -198,7 +198,6 @@ public class EnemyTracking : MonoBehaviour {
 		
 
 	
-        if (!turning)
 		//update its speed
 		updateSpeed();
 		
@@ -214,21 +213,32 @@ public class EnemyTracking : MonoBehaviour {
 	void updateSpeed()
 	{
 		//in case player is detected
-		if (detectedPlayer)
-		{
-			velocity = alertedSpeed;
-			//if player has not been detected for certain time, then turn off the alarm state
-			if (alertTimer <= 0)
-			{
-				detectedPlayer = false;
+        if (detectedPlayer)
+        {
+            velocity = alertedSpeed;
+            //if player has not been detected for certain time, then turn off the alarm state
+            if (alertTimer <= 0)
+            {
+                detectedPlayer = false;
                 alertTimer = defaultAlertTimer;
-			}
-			else
-				alertTimer -= 1;
-		}
-		//if player is not detected, set speed to default speed
-		else
-			velocity = defaultSpeed;
+            }
+            else
+                alertTimer -= 1;
+        }
+        //if player is not detected, set speed to default speed
+        else
+        {
+            if (facingRight)
+            {
+                velocity = defaultSpeed;
+                direction = Vector2.right;
+            }
+            else
+            {
+                velocity = defaultSpeed;
+                direction = -Vector2.right;
+            }
+        }
 
 	}
 
@@ -244,7 +254,7 @@ public class EnemyTracking : MonoBehaviour {
 
 
 		//face right if enemy intersects the left endpoint
-		facingRight = enemy.GetComponent<Renderer>().bounds.Intersects(point1.GetComponent<Renderer>().bounds);
+		//facingRight = enemy.GetComponent<Renderer>().bounds.Intersects(point1.GetComponent<Renderer>().bounds);
 		
 	}
 
@@ -284,6 +294,7 @@ public class EnemyTracking : MonoBehaviour {
 
     void setAtEndPoint(bool b) 
     {
+        print("setting");
         atEndPoint = b;
     }
 	
