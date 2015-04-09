@@ -8,8 +8,8 @@ public class Yarnball : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        collider2D.isTrigger = true;
-        rigidbody2D.isKinematic = true;
+        GetComponent<Collider2D>().isTrigger = true;
+        GetComponent<Rigidbody2D>().isKinematic = true;
 	}
 	
 	// Update is called once per frame
@@ -22,8 +22,8 @@ public class Yarnball : MonoBehaviour {
         print("Myah");
         if (col.gameObject.tag == "Player")
         {
-            collider2D.isTrigger = true;
-            rigidbody2D.isKinematic = true;
+            GetComponent<Collider2D>().isTrigger = true;
+            GetComponent<Rigidbody2D>().isKinematic = true;
             col.gameObject.SendMessage("PickupYarn");
             thrown = false;
         }
@@ -37,12 +37,12 @@ public class Yarnball : MonoBehaviour {
     void launchYarnball(int charge)
     {
         transform.parent = null;
-        rigidbody2D.isKinematic = false;
-        rigidbody2D.gravityScale = 1.5f;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        GetComponent<Rigidbody2D>().gravityScale = 1.5f;
         if (facingRight)
-            rigidbody2D.AddForce(new Vector2(charge * 13.5f, charge * 3.5f));
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(charge * 13.5f, charge * 3.5f));
         else
-            rigidbody2D.AddForce(new Vector2(-charge * 13.5f, charge * 3.5f));
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(-charge * 13.5f, charge * 3.5f));
         StartCoroutine(resetCollider());
         thrown = true;
     }
@@ -50,7 +50,7 @@ public class Yarnball : MonoBehaviour {
     IEnumerator resetCollider()
     {
         yield return new WaitForSeconds(0.25f);
-        collider2D.isTrigger = false;
-        rigidbody2D.isKinematic = false;
+        GetComponent<Collider2D>().isTrigger = false;
+        GetComponent<Rigidbody2D>().isKinematic = false;
     }
 }

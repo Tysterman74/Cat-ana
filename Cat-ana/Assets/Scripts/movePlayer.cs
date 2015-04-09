@@ -42,8 +42,8 @@ public class movePlayer : MonoBehaviour
     IEnumerator resetCollider()
     {
         yield return new WaitForSeconds(1.0f);
-        rigidbody2D.gravityScale = 1.5f;
-        collider2D.isTrigger = false;
+        GetComponent<Rigidbody2D>().gravityScale = 1.5f;
+        GetComponent<Collider2D>().isTrigger = false;
     }
 
     void Start()
@@ -64,12 +64,12 @@ public class movePlayer : MonoBehaviour
         isGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
 
         // Right arrow key pressed?
-        Vector2 test = new Vector2(0,rigidbody2D.velocity.y);
+        Vector2 test = new Vector2(0,GetComponent<Rigidbody2D>().velocity.y);
         if (Input.GetKey(right))
         {
-            test = new Vector2(speed, rigidbody2D.velocity.y);
+            test = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
             transform.eulerAngles = new Vector2(0, 0);
-            anim.SetFloat("speed", speed);
+            anim.SetFloat("speed", 1);
             if (hiding)
                 setHiding();
             facingRight = true;
@@ -79,9 +79,9 @@ public class movePlayer : MonoBehaviour
         else if (Input.GetKey(left))
         {
             print("test");
-            test = new Vector2(-speed, rigidbody2D.velocity.y);
+            test = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
             transform.eulerAngles = new Vector2(0, 180);
-            anim.SetFloat("speed", speed);
+            anim.SetFloat("speed", 1);
             if (hiding)
                 setHiding();
             facingRight = false;
@@ -89,13 +89,13 @@ public class movePlayer : MonoBehaviour
         else
         {
             //rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
-            anim.SetFloat("speed", 0.0f);
+            anim.SetFloat("speed", -1.0f);
         }
 
         test += externalVelocity;
-        print("Move Player: " + rigidbody2D.velocity);
+        //print("Move Player: " + GetComponent<Rigidbody2D>().velocity);
         print("External Velocity: " + externalVelocity);
-        rigidbody2D.velocity = test;
+        GetComponent<Rigidbody2D>().velocity = test;
         //if (Mathf.Abs(rigidbody2D.velocity.x) < maxSpeed)
         //    rigidbody2D.velocity += externalVelocity;
         //else
@@ -118,7 +118,7 @@ public class movePlayer : MonoBehaviour
         {
             if (Input.GetKey(jump))
             {
-                rigidbody2D.AddForce(new Vector2(0.0f, jumpSpeed));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, jumpSpeed));
                 if (hiding)
                     setHiding();
 
@@ -169,8 +169,8 @@ public class movePlayer : MonoBehaviour
                 yarnball.SendMessage("setDirection", facingRight);
                 print("thrown");
                 print(charge);
-                rigidbody2D.gravityScale = 0.0f;
-                collider2D.isTrigger = true;
+                GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                GetComponent<Collider2D>().isTrigger = true;
                 yarnball.SendMessage("launchYarnball", charge);
                 StartCoroutine(resetCollider());
                 charge = 0;
@@ -184,17 +184,17 @@ public class movePlayer : MonoBehaviour
 		{
 			hiding = true;
             smoke.Play();
-            rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
             gameObject.tag = "Hidden";
-            rigidbody2D.gravityScale = 0.0f;
-            collider2D.isTrigger = true;
+            GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            GetComponent<Collider2D>().isTrigger = true;
 		}
 		else if (hiding == true)
 		{
 			hiding = false;
             gameObject.tag = "Player";
-            rigidbody2D.gravityScale = 1.5f;
-            collider2D.isTrigger = false;
+            GetComponent<Rigidbody2D>().gravityScale = 1.5f;
+            GetComponent<Collider2D>().isTrigger = false;
 		}
 	}
 

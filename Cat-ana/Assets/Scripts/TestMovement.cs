@@ -14,7 +14,7 @@ public class TestMovement : MonoBehaviour {
     {
         float direction = Input.GetAxis("Horizontal");
 
-        rigidbody2D.velocity = new Vector2(speed * direction, rigidbody2D.velocity.y);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(speed * direction, GetComponent<Rigidbody2D>().velocity.y);
         /*if (direction > 0)
         {
 
