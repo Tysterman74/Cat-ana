@@ -2,9 +2,10 @@
 using System.Collections;
 
 public class Yarnball : MonoBehaviour {
-
+    private Vector2 externalVelocity;
     private bool thrown = false;
     private bool facingRight = false;
+    private bool onConveyorBelt = false;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +14,12 @@ public class Yarnball : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+    void FixedUpdate()
+    {
+        if (externalVelocity.x != 0)
+            rigidbody2D.velocity = externalVelocity;
+    }
+
 	void Update () {
 
 	}
@@ -53,4 +60,18 @@ public class Yarnball : MonoBehaviour {
         GetComponent<Collider2D>().isTrigger = false;
         GetComponent<Rigidbody2D>().isKinematic = false;
     }
+
+    public void setExternalVelocity(Vector2 vel)
+    {
+        print(vel);
+        externalVelocity = vel;
+    
+    }
+
+
+
+
 }
+
+
+
