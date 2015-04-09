@@ -5,7 +5,8 @@ public class EnemyAttacking : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        print(col);
         if (col.gameObject.tag == "Player")
-            Application.LoadLevel("playerMovement3");
+            Application.LoadLevel(Application.loadedLevel);
     }
 }
