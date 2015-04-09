@@ -62,7 +62,7 @@ public class hidingBehavior : MonoBehaviour {
     
     void hidePlayer()
     {
-        if (movePlayer.isMoving())
+        if (movePlayer.playerIsMoving())
         {
             if (hiding)
                 setHiding();

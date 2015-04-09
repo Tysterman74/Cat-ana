@@ -37,7 +37,7 @@ public class movePlayer : MonoBehaviour
     void FixedUpdate()
     {      
         horizontalMovement();
-        verticalMovement();  
+        verticalMovement();
     }
 
     public void horizontalMovement()
@@ -113,12 +113,12 @@ public class movePlayer : MonoBehaviour
         externalVelocity = vel;
     }
 
-    public bool isRight()
+    public bool playerIsFacingRight()
     {
         return facingRight;
     }
  
-    public bool isMoving()
+    public bool playerIsMoving()
     {
         return playerMoving;
     }

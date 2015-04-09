@@ -62,7 +62,7 @@ public class yarnBallBehavior : MonoBehaviour {
             //When release yarn button
             if (Input.GetKeyUp(yarn))
             {
-                yarnball.SendMessage("setDirection", movePlayer.isRight());
+                yarnball.SendMessage("setDirection", movePlayer.playerIsFacingRight());
                 print("thrown");
                 print(charge);
                 GetComponent<Rigidbody2D>().gravityScale = 0.0f;
