@@ -192,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .389999986, y: -.726000011, z: 0}
+  m_LocalPosition: {x: -6.4000001, y: 32.2999992, z: 0}
   m_LocalScale: {x: .769668341, y: .76966846, z: .76966846}
   m_Children:
   - {fileID: 494596}
@@ -384,14 +384,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 151506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8714a9812c87dcf46a9ea5a30f64171d, type: 3}
+  m_Script: {fileID: 11500000, guid: a9cf51bd9ebd67449b3c9bc5022cba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPosition: {fileID: 443758}
-  attackDistance: {fileID: 443756}
-  hit: 0
-  attack: 323
-  attackClicked: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 4294965983
+  isOnGround: 1
 --- !u!114 &11451504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -400,15 +399,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 151506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 784d0cb8cbc0cb44b872a39a0218b3ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 04dceed622e8f3b4dbb851a3d974e564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   right: 100
   left: 97
-  jump: 32
+  jump: 119
   speed: 5
   maxSpeed: 7.5
-  jumpSpeed: 10
+  jumpSpeed: 20
 --- !u!114 &11468118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -417,11 +416,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 151506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 206c460f353c4414cb62aeda6778825a, type: 3}
+  m_Script: {fileID: 11500000, guid: eb582626c9e800d4c94be23cbbc0274e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxcharge: 100
-  yarn: 99
+  playerPosition: {fileID: 443758}
+  attackDistance: {fileID: 443756}
+  hit: 0
+  attack: 323
+  attackClicked: 0
 --- !u!114 &11481628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,10 +432,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 151506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0410eac7e8e39a640ab5d141af9b6c36, type: 3}
+  m_Script: {fileID: 11500000, guid: b7e0fa86060656b4ca076ef90fa36903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiding: 0
+  maxcharge: 1000
+  yarn: 99
 --- !u!114 &11491758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,13 +445,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 151506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9312e5fb594b42e408e9094d30fde2dc, type: 3}
+  m_Script: {fileID: 11500000, guid: e4bc5ce3cf756aa479683a259c0cf63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1
-  isOnGround: 1
+  hiding: 0
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
