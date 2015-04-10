@@ -45,7 +45,7 @@ public class Yarnball : MonoBehaviour {
     {
         transform.parent = null;
         GetComponent<Rigidbody2D>().isKinematic = false;
-        GetComponent<Rigidbody2D>().gravityScale = 1.5f;
+
         if (facingRight)
             GetComponent<Rigidbody2D>().AddForce(new Vector2(charge * 13.5f, charge * 3.5f));
         else

@@ -14,6 +14,7 @@ public class movePlayer : MonoBehaviour
 	public float speed = 5.0f;
     public float maxSpeed = 7.5f;
     public float jumpSpeed = 20.0f;
+    private float gravScale;
     private bool facingRight = true;
     private bool playerMoving;
 
@@ -28,6 +29,8 @@ public class movePlayer : MonoBehaviour
         // Initializes groundBehavior object used for checking if the player is on the ground
         // with the playerOnGround() method that returns a bool
         groundBehavior = FindObjectOfType(typeof(groundBehavior)) as groundBehavior;
+
+        gravScale = GetComponent<Rigidbody2D>().gravityScale;
 
         // Initializes animator object used for determining what animations to play based on
         // player movement
@@ -121,5 +124,10 @@ public class movePlayer : MonoBehaviour
     public bool playerIsMoving()
     {
         return playerMoving;
+    }
+
+    public float playerGravity()
+    {
+        return gravScale;
     }
 }
