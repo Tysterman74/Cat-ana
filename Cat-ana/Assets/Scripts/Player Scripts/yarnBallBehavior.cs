@@ -9,6 +9,10 @@ public class yarnBallBehavior : MonoBehaviour {
     private GameObject yarnball;
     private bool yarnballThrown = false;
 
+    private GameObject chargeParticles;
+    private ParticleSystem particles;
+    private bool showParticles = false;
+
     public KeyCode yarn;
 
     private SpriteRenderer renderPlayer;
@@ -26,6 +30,10 @@ public class yarnBallBehavior : MonoBehaviour {
 
         charge = 0;
         yarnball = transform.FindChild("YarnBall").gameObject;
+        chargeParticles = transform.FindChild("YarnCharge").gameObject;
+        particles = chargeParticles.GetComponent<ParticleSystem>();
+
+        chargeParticles.SetActive(false);
 	}
 
     void Update()
@@ -42,36 +50,53 @@ public class yarnBallBehavior : MonoBehaviour {
 
     void ballCharge()
     {
-        //When grounded, If holding the button for yarn then release.
-        if (groundBehavior.playerOnGround())
+        if (showParticles)
         {
-            //TODO:
-            //Add particle effects and asethics to charge
-            //Used for charging the yarn
-            if (Input.GetKey(yarn))
+            particles.startSize += particles.startSize / (100.0f/3.0f);
+            if (particles.startSize >= 3.0f)
             {
-                print("charge");
-
-                charge += 1;
-                if (charge > 100)
-                {
-                    charge = 100;
-                }
-
-            }
-            //When release yarn button
-            if (Input.GetKeyUp(yarn))
-            {
-                yarnball.SendMessage("setDirection", movePlayer.playerIsFacingRight());
-                print("thrown");
-                print(charge);
-                GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-                //GetComponent<Collider2D>().isTrigger = true;
-                yarnball.SendMessage("launchYarnball", charge);
-                resetCollider();
-                charge = 0;
+                particles.startSize = 3.0f;
             }
         }
+
+        //When grounded, If holding the button for yarn then release.
+        //if (groundBehavior.playerOnGround())
+        //{
+        //TODO:
+        //Add particle effects and asethics to charge
+        //Used for charging the yarn
+        if (Input.GetKey(yarn))
+        {
+            print("charge");
+
+            charge += 1;
+            if (charge > 100)
+            {
+                charge = 100;
+            }
+
+            showParticles = true;
+            chargeParticles.SetActive(true);
+
+        }
+        //When release yarn button
+        if (Input.GetKeyUp(yarn))
+        {
+            yarnball.SendMessage("setDirection", movePlayer.playerIsFacingRight());
+            print("thrown");
+            print(charge);
+            GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            //GetComponent<Collider2D>().isTrigger = true;
+            yarnball.SendMessage("launchYarnball", charge);
+            resetCollider();
+            charge = 0;
+
+            showParticles = false;
+            chargeParticles.SetActive(false);
+            particles.startSize = 1;
+
+        }
+        //}
     }
 
     void PickupYarn()
