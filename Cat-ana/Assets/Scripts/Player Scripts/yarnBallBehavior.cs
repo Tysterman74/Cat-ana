@@ -37,7 +37,7 @@ public class yarnBallBehavior : MonoBehaviour {
     {
 //        yield return new WaitForSeconds(1.0f);
         GetComponent<Rigidbody2D>().gravityScale = movePlayer.playerGravity();
-        GetComponent<Collider2D>().isTrigger = false;
+        //GetComponent<Collider2D>().isTrigger = false;
     }
 
     void ballCharge()
@@ -66,7 +66,7 @@ public class yarnBallBehavior : MonoBehaviour {
                 print("thrown");
                 print(charge);
                 GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-                GetComponent<Collider2D>().isTrigger = true;
+                //GetComponent<Collider2D>().isTrigger = true;
                 yarnball.SendMessage("launchYarnball", charge);
                 resetCollider();
                 charge = 0;
