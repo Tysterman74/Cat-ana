@@ -18,6 +18,14 @@ public class movePlayer : MonoBehaviour
     private bool facingRight = true;
     private bool playerMoving;
 
+    public AudioClip jumpSound1;
+    public AudioClip jumpSound2;
+    public AudioClip jumpSound3;
+    private bool oneJumpDone = false;
+    private bool twoJumpsDone = false;
+   
+    private AudioSource source;
+
     Animator anim;
 
     groundBehavior groundBehavior;
@@ -35,6 +43,8 @@ public class movePlayer : MonoBehaviour
         // Initializes animator object used for determining what animations to play based on
         // player movement
         anim = GetComponent<Animator>();
+
+        source = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -95,6 +105,8 @@ public class movePlayer : MonoBehaviour
                 totalVelocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpSpeed);
 
                 playerMoving = true;
+
+                playJumpSound();
             }
 
             GetComponent<Rigidbody2D>().velocity = totalVelocity;
@@ -110,6 +122,29 @@ public class movePlayer : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = totalVelocity;
     }
 
+    void playJumpSound()
+    {
+        if (oneJumpDone)
+        {
+            source.PlayOneShot(jumpSound2);
+
+            oneJumpDone = false;
+            twoJumpsDone = true;
+        }
+        else if (twoJumpsDone)
+        {
+            source.PlayOneShot(jumpSound3);
+
+            oneJumpDone = false;
+            twoJumpsDone = false;
+        }
+        else
+        {
+            source.PlayOneShot(jumpSound1, 1F);
+
+            oneJumpDone = true;
+        }
+    }
 
     public void setExternalVelocity(Vector2 vel)
     {
