@@ -33,10 +33,10 @@ public class yarnBallBehavior : MonoBehaviour {
         ballCharge();
     }
 
-    IEnumerator resetCollider()
+    void resetCollider()
     {
-        yield return new WaitForSeconds(1.0f);
-        GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+//        yield return new WaitForSeconds(1.0f);
+        GetComponent<Rigidbody2D>().gravityScale = movePlayer.playerGravity();
         GetComponent<Collider2D>().isTrigger = false;
     }
 
@@ -68,7 +68,7 @@ public class yarnBallBehavior : MonoBehaviour {
                 GetComponent<Rigidbody2D>().gravityScale = 0.0f;
                 GetComponent<Collider2D>().isTrigger = true;
                 yarnball.SendMessage("launchYarnball", charge);
-                StartCoroutine(resetCollider());
+                resetCollider();
                 charge = 0;
             }
         }

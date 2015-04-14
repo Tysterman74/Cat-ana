@@ -41,7 +41,7 @@ public class hidingBehavior : MonoBehaviour {
         {
             hiding = false;
             gameObject.tag = "Player";
-            GetComponent<Rigidbody2D>().gravityScale = 1.5f;
+            GetComponent<Rigidbody2D>().gravityScale = movePlayer.playerGravity();
             GetComponent<Collider2D>().isTrigger = false;
         }
     }
