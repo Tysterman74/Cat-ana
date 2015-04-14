@@ -29,7 +29,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 50: {fileID: 5000000}
   - 58: {fileID: 5800000}
-  - 114: {fileID: 11400000}
+  - 114: {fileID: 11499558}
   m_Layer: 8
   m_Name: YarnBall
   m_TagString: YarnBall
@@ -365,17 +365,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b054a268f8d44df48bf00ab78d544527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11443756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -449,6 +438,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hiding: 0
+--- !u!114 &11499558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b054a268f8d44df48bf00ab78d544527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
