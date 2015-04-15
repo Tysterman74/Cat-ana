@@ -65,36 +65,39 @@ public class yarnBallBehavior : MonoBehaviour {
         //TODO:
         //Add particle effects and asethics to charge
         //Used for charging the yarn
-        if (Input.GetKey(yarn))
+        if (!yarnball.GetComponent<Yarnball>().isThrown())
         {
-            print("charge");
-
-            charge += 1;
-            if (charge > 100)
+            if (Input.GetKey(yarn))
             {
-                charge = 100;
+                print("charge");
+
+                charge += 1;
+                if (charge > 100)
+                {
+                    charge = 100;
+                }
+
+                showParticles = true;
+                chargeParticles.SetActive(true);
+
             }
+            //When release yarn button
+            if (Input.GetKeyUp(yarn))
+            {
+                yarnball.SendMessage("setDirection", movePlayer.playerIsFacingRight());
+                print("thrown");
+                print(charge);
+                GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                //GetComponent<Collider2D>().isTrigger = true;
+                yarnball.SendMessage("launchYarnball", charge);
+                resetCollider();
+                charge = 0;
 
-            showParticles = true;
-            chargeParticles.SetActive(true);
+                showParticles = false;
+                chargeParticles.SetActive(false);
+                particles.startSize = 1;
 
-        }
-        //When release yarn button
-        if (Input.GetKeyUp(yarn))
-        {
-            yarnball.SendMessage("setDirection", movePlayer.playerIsFacingRight());
-            print("thrown");
-            print(charge);
-            GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-            //GetComponent<Collider2D>().isTrigger = true;
-            yarnball.SendMessage("launchYarnball", charge);
-            resetCollider();
-            charge = 0;
-
-            showParticles = false;
-            chargeParticles.SetActive(false);
-            particles.startSize = 1;
-
+            } 
         }
         //}
     }
