@@ -9,6 +9,10 @@ public class yarnBallBehavior : MonoBehaviour {
     private GameObject yarnball;
     private bool yarnballThrown = false;
 
+    private GameObject chargeParticles;
+    private ParticleSystem particles;
+    private bool showParticles = false;
+
     public KeyCode yarn;
 
     private SpriteRenderer renderPlayer;
@@ -26,6 +30,10 @@ public class yarnBallBehavior : MonoBehaviour {
 
         charge = 0;
         yarnball = transform.FindChild("YarnBall").gameObject;
+        chargeParticles = transform.FindChild("YarnCharge").gameObject;
+        particles = chargeParticles.GetComponent<ParticleSystem>();
+
+        chargeParticles.SetActive(false);
 	}
 
     void Update()
@@ -42,12 +50,23 @@ public class yarnBallBehavior : MonoBehaviour {
 
     void ballCharge()
     {
-        //When grounded, If holding the button for yarn then release.
-        if (groundBehavior.playerOnGround())
+        if (showParticles)
         {
-            //TODO:
-            //Add particle effects and asethics to charge
-            //Used for charging the yarn
+            particles.startSize += particles.startSize / (100.0f/3.0f);
+            if (particles.startSize >= 3.0f)
+            {
+                particles.startSize = 3.0f;
+            }
+        }
+
+        //When grounded, If holding the button for yarn then release.
+        //if (groundBehavior.playerOnGround())
+        //{
+        //TODO:
+        //Add particle effects and asethics to charge
+        //Used for charging the yarn
+        if (!yarnball.GetComponent<Yarnball>().isThrown())
+        {
             if (Input.GetKey(yarn))
             {
                 print("charge");
@@ -57,6 +76,9 @@ public class yarnBallBehavior : MonoBehaviour {
                 {
                     charge = 100;
                 }
+
+                showParticles = true;
+                chargeParticles.SetActive(true);
 
             }
             //When release yarn button
@@ -70,8 +92,14 @@ public class yarnBallBehavior : MonoBehaviour {
                 yarnball.SendMessage("launchYarnball", charge);
                 resetCollider();
                 charge = 0;
-            }
+
+                showParticles = false;
+                chargeParticles.SetActive(false);
+                particles.startSize = 1;
+
+            } 
         }
+        //}
     }
 
     void PickupYarn()

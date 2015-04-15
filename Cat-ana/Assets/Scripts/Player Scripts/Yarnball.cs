@@ -72,6 +72,11 @@ public class Yarnball : MonoBehaviour {
     
     }
 
+    public bool isThrown() 
+    {
+        return thrown;
+    }
+
 
 
 
