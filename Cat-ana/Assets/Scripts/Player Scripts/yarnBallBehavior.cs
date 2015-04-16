@@ -65,7 +65,7 @@ public class yarnBallBehavior : MonoBehaviour {
         //TODO:
         //Add particle effects and asethics to charge
         //Used for charging the yarn
-        if (!yarnball.GetComponent<Yarnball>().isThrown())
+        if (!yarnball.GetComponent<Yarnball>().isThrown() && gameObject.tag != "Hidden")
         {
             if (Input.GetKey(yarn))
             {

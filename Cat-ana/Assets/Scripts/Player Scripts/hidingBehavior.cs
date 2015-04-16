@@ -3,10 +3,11 @@ using System.Collections;
 
 public class hidingBehavior : MonoBehaviour {
 
+    public KeyCode hidingButton;
     public bool hiding = false;
 
     private ParticleSystem smoke;
-
+    private bool nearHidable = false;
     private SpriteRenderer renderPlayer;
 
     movePlayer movePlayer;
@@ -22,13 +23,20 @@ public class hidingBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (nearHidable)
+        {
+            if (Input.GetKeyDown(hidingButton))
+            {
+                setHiding();
+            }
+        }
         renderHiding();
         hidePlayer();
 	}
 
     void setHiding()
     {
-        if (hiding == false)
+        if (!hiding)
         {
             hiding = true;
             smoke.Play();
@@ -37,7 +45,7 @@ public class hidingBehavior : MonoBehaviour {
             GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             GetComponent<Collider2D>().isTrigger = true;
         }
-        else if (hiding == true)
+        else if (hiding)
         {
             hiding = false;
             gameObject.tag = "Player";
@@ -67,5 +75,10 @@ public class hidingBehavior : MonoBehaviour {
             if (hiding)
                 setHiding();
         }
+    }
+
+    public void setNearHidable(bool b)
+    {
+        nearHidable = b;
     }
 }

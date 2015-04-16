@@ -660,6 +660,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 495702, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -7.69999981
+      objectReference: {fileID: 0}
+    - target: {fileID: 495702, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 31.2999992
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407956, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
+      propertyPath: hidingButton
+      value: 102
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
   m_IsPrefabParent: 0
