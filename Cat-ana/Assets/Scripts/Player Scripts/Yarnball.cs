@@ -22,7 +22,6 @@ public class Yarnball : MonoBehaviour {
     }
 
 	void Update () {
-
 	}
 
     void OnCollisionEnter2D(Collision2D col)
