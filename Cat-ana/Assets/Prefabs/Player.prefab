@@ -70,7 +70,6 @@ GameObject:
   - 50: {fileID: 5047292}
   - 58: {fileID: 5880892}
   - 114: {fileID: 11480060}
-  - 114: {fileID: 11408722}
   m_Layer: 8
   m_Name: YarnBall
   m_TagString: YarnBall
@@ -125,6 +124,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &191430
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 407514}
+  m_Layer: 8
+  m_Name: SeedGroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &401236
 Transform:
   m_ObjectHideFlags: 1
@@ -137,6 +151,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 495702}
   m_RootOrder: 0
+--- !u!4 &407514
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.500400007, z: 0}
+  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_Children: []
+  m_Father: {fileID: 450288}
+  m_RootOrder: 0
 --- !u!4 &450288
 Transform:
   m_ObjectHideFlags: 1
@@ -146,7 +172,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .0200000126, y: 0, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
-  m_Children: []
+  m_Children:
+  - {fileID: 407514}
   m_Father: {fileID: 495702}
   m_RootOrder: 4
 --- !u!4 &452124
@@ -271,7 +298,7 @@ Rigidbody2D:
   m_LinearDrag: 2
   m_AngularDrag: .0500000007
   m_GravityScale: 1.5
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -415,17 +442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hiding: 0
---- !u!114 &11408722
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b054a268f8d44df48bf00ab78d544527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11418910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -440,7 +456,7 @@ MonoBehaviour:
   right: 100
   left: 97
   jump: 119
-  speed: 5
+  speed: 8
   maxSpeed: 9
   jumpSpeed: 20
   jumpSound1: {fileID: 8300000, guid: 26f0f934fb9804a4dbd72fa47aff5791, type: 3}
@@ -488,6 +504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b054a268f8d44df48bf00ab78d544527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1
+  isOnGround: 1
 --- !u!198 &19810200
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -7,11 +7,21 @@ public class Yarnball : MonoBehaviour {
     private bool facingRight = false;
     private bool onConveyorBelt = false;
 
+    private GameObject groundCheck;
+    private float groundHeight;
+
+    public LayerMask whatIsGround;
+    public bool isOnGround = true;
+
+
+
 	// Use this for initialization
 	void Start () {
         //GetComponent<Collider2D>().isTrigger = true;
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
         GetComponent<Rigidbody2D>().isKinematic = true;
+
+        groundCheck = transform.FindChild("SeedGroundCheck").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -19,11 +29,11 @@ public class Yarnball : MonoBehaviour {
     {
         if (externalVelocity.x != 0)
             GetComponent<Rigidbody2D>().velocity = externalVelocity;
+
+        isOnGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
+
+        stopOnGround();
     }
-
-	void Update () {
-
-	}
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -78,8 +88,13 @@ public class Yarnball : MonoBehaviour {
     }
 
 
-
-
+    public void stopOnGround()
+    {
+        if (isOnGround)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+        }
+    }
 }
 
 

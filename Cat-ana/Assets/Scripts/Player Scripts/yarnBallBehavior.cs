@@ -69,8 +69,6 @@ public class yarnBallBehavior : MonoBehaviour {
         {
             if (Input.GetKey(yarn))
             {
-                print("charge");
-
                 charge += 1;
                 if (charge > 100)
                 {
