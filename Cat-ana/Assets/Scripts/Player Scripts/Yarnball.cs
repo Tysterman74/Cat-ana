@@ -9,7 +9,7 @@ public class Yarnball : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //GetComponent<Collider2D>().isTrigger = true;
+        GetComponent<Collider2D>().isTrigger = true;
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
         GetComponent<Rigidbody2D>().isKinematic = true;
 	}
@@ -29,7 +29,7 @@ public class Yarnball : MonoBehaviour {
         print("Myah");
         if (col.gameObject.tag == "Player")
         {
-            //GetComponent<Collider2D>().isTrigger = true;
+            GetComponent<Collider2D>().isTrigger = true;
             Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
             GetComponent<Rigidbody2D>().isKinematic = true;
             col.gameObject.SendMessage("PickupYarn");
@@ -47,19 +47,19 @@ public class Yarnball : MonoBehaviour {
         transform.parent = null;
         GetComponent<Rigidbody2D>().isKinematic = false;
 
+        //Change to grabbing x and y velocity and add in velocity equation.
         if (facingRight)
             GetComponent<Rigidbody2D>().AddForce(new Vector2(charge * 13.5f, charge * 3.5f));
         else
             GetComponent<Rigidbody2D>().AddForce(new Vector2(-charge * 13.5f, charge * 3.5f));
         StartCoroutine(resetCollider());
-        //Physics2D.IgnoreCollision(this.Get
         thrown = true;
     }
 
     IEnumerator resetCollider()
     {
         yield return new WaitForSeconds(0.25f);
-        //GetComponent<Collider2D>().isTrigger = false;
+        GetComponent<Collider2D>().isTrigger = false;
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>(), false);
         GetComponent<Rigidbody2D>().isKinematic = false;
     }

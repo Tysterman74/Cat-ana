@@ -49,7 +49,7 @@ public class attackLogic : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(attack))
+        if (Input.GetKey(attack) && gameObject.tag != "Hidden")
         {
             attackClicked = true;
             anim.SetBool("attackClicked", attackClicked);

@@ -48,9 +48,12 @@ public class movePlayer : MonoBehaviour
     }
 
     void FixedUpdate()
-    {      
-        horizontalMovement();
-        verticalMovement();
+    {
+        if (gameObject.tag != "Hidden")
+        {
+            horizontalMovement();
+            verticalMovement();
+        }
     }
 
     public void horizontalMovement()
