@@ -23,18 +23,16 @@ public class BoxHidingScript : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                print("HIDING");
-                //Send message to player that we are hiding.
-				col.gameObject.SendMessage("setHiding");
-            }
-         
+            col.gameObject.SendMessage("setNearHidable", true);
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
+        if (col.tag == "Hidden")
+        {
+            col.gameObject.SendMessage("setNearHidable", false);
+        }
         //Send message to player we are not hiding.
         /*if (col.tag == "Player")
         {

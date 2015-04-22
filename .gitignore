@@ -6,7 +6,6 @@ Temp
 *.suo
 /Cat-ana/*.csproj
 /Cat-ana/*.sln
-*.meta
 /Cat-ana/*.userprefs
 !/Cat-ana/Assets/*.meta
 !/Cat-ana/ASsets/Scenes/*.meta

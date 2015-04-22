@@ -10,7 +10,7 @@ public class EnemyTracking : MonoBehaviour {
 	public int defaultAlertTimer = 100; // Enemy will not be alarmed after certain time. (This may not be needed)
     public int defaultTurnAroundTimer = 400; //even if the enemy doesn't reach the end point, it will turn around after certain time
 	public float travelingRadius = 10.0f;
-    public bool facingRight = true; //true means right
+    public bool facingRight; //true means right
 	//public float alertedDistance = 15.0f;
 	
 	 
@@ -22,8 +22,8 @@ public class EnemyTracking : MonoBehaviour {
 
     private Vector2 direction;
 
-
-	
+    private bool turning;
+    private bool atEndPoint;
 	private float velocity;
 	private bool detectedPlayer;
 	private int alertTimer; //this is for the time when enemy loses the sight of player
@@ -57,11 +57,11 @@ public class EnemyTracking : MonoBehaviour {
         point1 = transform.FindChild("EndPoint1").gameObject;
         point2 = transform.FindChild("EndPoint2").gameObject;
         enemy = transform.FindChild("Enemy").gameObject;
-        
 
 
-        
 
+        turning = false;
+        atEndPoint = false;
 		detectedPlayer = false;
 		velocity = defaultSpeed;
 		alertTimer = defaultAlertTimer;
@@ -77,7 +77,7 @@ public class EnemyTracking : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         
 		//detects everything that intersects with the enemy's detectionLine.
 
@@ -137,27 +137,44 @@ public class EnemyTracking : MonoBehaviour {
 
 
         }
-        else
+        else if (atEndPoint)
         {
             //decrease direction timer by 1 every tick
-            turnAroundTimer -= 1;
+            //turnAroundTimer -= 1;
+            //print("Intersect: " + intersectEndPoint());
 
             //if collides with endpoints while not detected
-            if (intersectEndPoint())
-            {
-                //then update its direction
-                updateDirection();
-                //and reset timer
-                turnAroundTimer = defaultTurnAroundTimer;
-            }
-            else if (turnAroundTimer <= 0)
-            {
-                facingRight = !facingRight;
-                turnAroundTimer = defaultTurnAroundTimer;
-            }
+           //if (atEndPoint)
+           //{
+           //    print("Turning");
+           //    //then update its direction
+           //    updateDirection();
+           //    //and reset timer
+           //    turnAroundTimer = defaultTurnAroundTimer;
+           //}
+           //else if (turnAroundTimer <= 0)
+           //{
+           //    facingRight = !facingRight;
+           //    turnAroundTimer = defaultTurnAroundTimer;
+           //}
+            //facingRight != facingRight;
+            facingRight = !facingRight;
+            //turning = true;
+            //updateDirection();
+            atEndPoint = false;
             //print(turnAroundTimer);
 
         }
+        //else if (turning) 
+        //{
+        //    turnAroundTimer -= 1;
+        //    if (turnAroundTimer <= 0)
+        //    {
+        //        turning = false;
+        //        facingRight = !facingRight;
+        //        updateDirection();
+        //    }
+        //}
 		
         //based on the above calculation, set the actual direction and detection line
         if (facingRight)
@@ -185,7 +202,7 @@ public class EnemyTracking : MonoBehaviour {
 		updateSpeed();
 		
 		//actually apply the velocity to the game
-        enemy.rigidbody2D.velocity = new Vector2((direction.x * velocity) , enemy.rigidbody2D.velocity.y);
+        enemy.GetComponent<Rigidbody2D>().velocity = new Vector2((direction.x * velocity) , enemy.GetComponent<Rigidbody2D>().velocity.y);
 
 		
     }
@@ -196,21 +213,32 @@ public class EnemyTracking : MonoBehaviour {
 	void updateSpeed()
 	{
 		//in case player is detected
-		if (detectedPlayer)
-		{
-			velocity = alertedSpeed;
-			//if player has not been detected for certain time, then turn off the alarm state
-			if (alertTimer <= 0)
-			{
-				detectedPlayer = false;
+        if (detectedPlayer)
+        {
+            velocity = alertedSpeed;
+            //if player has not been detected for certain time, then turn off the alarm state
+            if (alertTimer <= 0)
+            {
+                detectedPlayer = false;
                 alertTimer = defaultAlertTimer;
-			}
-			else
-				alertTimer -= 1;
-		}
-		//if player is not detected, set speed to default speed
-		else
-			velocity = defaultSpeed;
+            }
+            else
+                alertTimer -= 1;
+        }
+        //if player is not detected, set speed to default speed
+        else
+        {
+            if (facingRight)
+            {
+                velocity = defaultSpeed;
+                direction = Vector2.right;
+            }
+            else
+            {
+                velocity = defaultSpeed;
+                direction = -Vector2.right;
+            }
+        }
 
 	}
 
@@ -226,7 +254,7 @@ public class EnemyTracking : MonoBehaviour {
 
 
 		//face right if enemy intersects the left endpoint
-		facingRight = enemy.renderer.bounds.Intersects(point1.renderer.bounds);
+		//facingRight = enemy.GetComponent<Renderer>().bounds.Intersects(point1.GetComponent<Renderer>().bounds);
 		
 	}
 
@@ -259,7 +287,15 @@ public class EnemyTracking : MonoBehaviour {
     //if an enemy touches any chosen endpoint, return true
 	bool intersectEndPoint()
 	{
-		return enemy.renderer.bounds.Intersects(point1.renderer.bounds) || enemy.renderer.bounds.Intersects(point2.renderer.bounds);
+        return (enemy.transform.position.x == point1.transform.position.x && enemy.transform.position.y == point1.transform.position.y)
+            || (enemy.transform.position.x == point2.transform.position.x && enemy.transform.position.y == point2.transform.position.y);
+		//return enemy.GetComponent<Renderer>().bounds.Intersects(point1.GetComponent<Renderer>().bounds) || enemy.GetComponent<Renderer>().bounds.Intersects(point2.GetComponent<Renderer>().bounds);
 	}
+
+    void setAtEndPoint(bool b) 
+    {
+        print("setting");
+        atEndPoint = b;
+    }
 	
 }
