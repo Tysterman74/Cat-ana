@@ -19,7 +19,8 @@ public class EndPointScript : MonoBehaviour {
     {
         if (col.tag == "Enemy")
         {
-            col.SendMessageUpwards("setAtEndPoint", true);
+            print("hit");
+            col.transform.parent.GetComponent<EnemyTracking>().setAtEndPoint(true);
         }
     }
 }
