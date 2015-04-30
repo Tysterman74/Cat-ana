@@ -94,6 +94,11 @@ public class Yarnball : MonoBehaviour {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
         }
     }
+
+    public bool seedOnGround()
+    {
+        return isOnGround;
+    }
 }
 
 
