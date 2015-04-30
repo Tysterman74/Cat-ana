@@ -101,9 +101,9 @@ public class EnemyTracking : MonoBehaviour {
 				break;
 			}
 
-            else if (detect[i].collider.tag == "Yarnball")
+            else if (detect[i].collider.tag == "Flower")
             {
-
+                print("AKFASFKWEGNKADNC");
             }
 
             //this may be changed to else statement such that enemy turns around if it detects anything but player.
