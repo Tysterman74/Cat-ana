@@ -77,6 +77,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &151298
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 416026}
+  - 114: {fileID: 11443484}
+  m_Layer: 8
+  m_Name: FlowerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &170284
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +179,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 450288}
   m_RootOrder: 0
+--- !u!4 &416026
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 450288}
+  m_RootOrder: 1
 --- !u!4 &450288
 Transform:
   m_ObjectHideFlags: 1
@@ -174,6 +202,7 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 407514}
+  - {fileID: 416026}
   m_Father: {fileID: 495702}
   m_RootOrder: 4
 --- !u!4 &452124
@@ -441,6 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4bc5ce3cf756aa479683a259c0cf63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hidingButton: 102
   hiding: 0
 --- !u!114 &11418910
 MonoBehaviour:
@@ -462,6 +492,20 @@ MonoBehaviour:
   jumpSound1: {fileID: 8300000, guid: 26f0f934fb9804a4dbd72fa47aff5791, type: 3}
   jumpSound2: {fileID: 8300000, guid: c9ccf6cbea8ec0a479e28ccb1f474e5e, type: 3}
   jumpSound3: {fileID: 8300000, guid: bc92f9ca5161aab4d970660b7910dea7, type: 3}
+--- !u!114 &11443484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e3887f84999a34cb52a7b5e40f5f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flower: {fileID: 100104, guid: 5aec9a2494e92cf42bcbbe416dfc6dff, type: 2}
+  node: {fileID: 416026}
+  spawnTime: 1
 --- !u!114 &11444774
 MonoBehaviour:
   m_ObjectHideFlags: 1
