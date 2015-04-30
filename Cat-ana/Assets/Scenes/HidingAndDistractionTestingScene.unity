@@ -335,10 +335,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1517197382}
   m_RootOrder: 1
---- !u!4 &1093428209 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 450288, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
-  m_PrefabInternal: {fileID: 2095381637}
 --- !u!1 &1197721897
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,48 +615,6 @@ Transform:
   - {fileID: 1197721898}
   m_Father: {fileID: 0}
   m_RootOrder: 5
---- !u!1 &1726425236
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1726425237}
-  - 114: {fileID: 1726425238}
-  m_Layer: 8
-  m_Name: FlowerSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1726425237
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1726425236}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1093428209}
-  m_RootOrder: 1
---- !u!114 &1726425238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1726425236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e3887f84999a34cb52a7b5e40f5f95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flower: {fileID: 100104, guid: 5aec9a2494e92cf42bcbbe416dfc6dff, type: 2}
-  node: {fileID: 1726425237}
-  spawnTime: 1
 --- !u!1 &2077702027
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,14 +750,6 @@ Prefab:
     - target: {fileID: 495702, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11418910, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
-      propertyPath: speed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 11407956, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
-      propertyPath: hidingButton
-      value: 102
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
