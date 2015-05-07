@@ -107,24 +107,31 @@ public class EnemyTracking : MonoBehaviour {
 
             else if (detect[i].collider.tag == "Flower")
             {
-                print("AKFASFKWEGNKADNC");
+                //calculate distance. Stop if certain distance away 
+                float distance = Vector2.Distance(enemy.transform.position, GameObject.FindWithTag("Flower").transform.position);
                 flower = detect[i].collider.gameObject;
+                print(distance);
 
-				
-				if (distractedTimer <= 0.0f)
-				{ //if time is up, kill the flower
-					print ("kill flower");
-					Destroy (GameObject.FindWithTag("Flower"));
-					//reset timer
-					distractedTimer = defaultDistractTime;
-				}
-				else
-				{ 
-					//subtract time from distracted timer
-					print("time to destroy: " + distractedTimer);
+                if (distance <= 2.0f)
+                {
+                    print("enemy stops");
+                    velocity = 0.0f;
 
-					distractedTimer -= Time.deltaTime;
-				}
+                    if (distractedTimer <= 0.0f)
+                    { //if time is up, kill the flower
+                        print("kill flower");
+                        Destroy(GameObject.FindWithTag("Flower"));
+                        //reset timer
+                        distractedTimer = defaultDistractTime;
+                    }
+                    else
+                    {
+                        //subtract time from distracted timer
+                        print("time to destroy: " + distractedTimer);
+
+                        distractedTimer -= Time.deltaTime;
+                    }
+                }
 
 
             }
@@ -160,17 +167,6 @@ public class EnemyTracking : MonoBehaviour {
 
 
 
-        }
-        else if (flower != null){
-
-			//calculate distance. Stop if certain distance away 
-			float distance = Vector3.Distance(enemy.transform.position,GameObject.FindWithTag("Flower").transform.position);
-			print (distance);
-
-			if(distance <= 2.0 ){
-				print ("enemy stops");
-				enemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			}
         }
         else if (atEndPoint)
         {
