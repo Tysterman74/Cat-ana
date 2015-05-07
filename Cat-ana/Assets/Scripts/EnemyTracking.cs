@@ -18,7 +18,7 @@ public class EnemyTracking : MonoBehaviour {
     private GameObject point1;
     private GameObject point2;
     private GameObject enemy;
-
+    private GameObject flower;
 
 
     private Vector2 direction;
@@ -58,7 +58,7 @@ public class EnemyTracking : MonoBehaviour {
         point1 = transform.FindChild("EndPoint1").gameObject;
         point2 = transform.FindChild("EndPoint2").gameObject;
         enemy = transform.FindChild("Enemy").gameObject;
-
+        flower = null;
 
 
         turning = false;
@@ -105,7 +105,7 @@ public class EnemyTracking : MonoBehaviour {
             else if (detect[i].collider.tag == "Flower")
             {
                 print("AKFASFKWEGNKADNC");
-
+                flower = detect[i].collider.gameObject;
 
 				
 				if (distractedTimer <= 0.0f)
@@ -157,6 +157,10 @@ public class EnemyTracking : MonoBehaviour {
 
 
 
+        }
+        else if (flower != null)
+        {
+            //PUT YOUR CODE HURRRR HEATHER
         }
         else if (atEndPoint)
         {
