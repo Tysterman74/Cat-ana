@@ -28,6 +28,7 @@ public class EnemyTracking : MonoBehaviour {
     private bool atEndPoint;
 	private float velocity;
 	private bool detectedPlayer;
+	private bool detectedFlower;
 	private int alertTimer; //this is for the time when enemy loses the sight of player
     private float turnAroundTimer; //this is for the time when enemy needs to turn around
 	private Vector3 directionVector;
@@ -65,6 +66,7 @@ public class EnemyTracking : MonoBehaviour {
         turning = false;
         atEndPoint = false;
 		detectedPlayer = false;
+		detectedFlower = false;
 		velocity = defaultSpeed;
 		alertTimer = defaultAlertTimer;
         turnAroundTimer = defaultTurnAroundTimer;
@@ -107,33 +109,8 @@ public class EnemyTracking : MonoBehaviour {
 
             else if (detect[i].collider.tag == "Flower")
             {
-                //calculate distance. Stop if certain distance away 
-                float distance = Vector2.Distance(enemy.transform.position, GameObject.FindWithTag("Flower").transform.position);
-                flower = detect[i].collider.gameObject;
-                print(distance);
-
-                if (distance <= 2.0f)
-                {
-                    print("enemy stops");
-                    velocity = 0.0f;
-
-                    if (distractedTimer <= 0.0f)
-                    { //if time is up, kill the flower
-                        print("kill flower");
-                        Destroy(GameObject.FindWithTag("Flower"));
-                        //reset timer
-                        distractedTimer = defaultDistractTime;
-                    }
-                    else
-                    {
-                        //subtract time from distracted timer
-                        print("time to destroy: " + distractedTimer);
-
-                        distractedTimer -= Time.deltaTime;
-                    }
-                }
-
-
+				detectedFlower = true; 
+              
             }
 
             //this may be changed to else statement such that enemy turns around if it detects anything but player.
@@ -266,7 +243,38 @@ public class EnemyTracking : MonoBehaviour {
             else
                 alertTimer -= 1;
         }
-        //if player is not detected, set speed to default speed
+		else if(detectedFlower){
+
+			//calculate distance. Stop if certain distance away 
+			float distance = Vector2.Distance(enemy.transform.position, GameObject.FindWithTag("Flower").transform.position);
+			//flower = detect[i].collider.gameObject;
+			print(distance);
+			
+			if (distance <= 2.0f)
+			{
+				print("enemy stops");
+				velocity = 0.0f;
+				
+				if (distractedTimer <= 0.0f)
+				{ //if time is up, kill the flower
+					print("kill flower");
+					Destroy(GameObject.FindWithTag("Flower"));
+					//reset timer
+					distractedTimer = defaultDistractTime;
+					//reset detectedFlower
+					detectedFlower = false; 
+				}
+				else
+				{
+					//subtract time from distracted timer
+					print("time to destroy: " + distractedTimer);
+					
+					distractedTimer -= Time.deltaTime;
+				}
+			}
+
+		}
+        //if player and flower are not detected, set speed to default speed
         else
         {
             if (facingRight)
