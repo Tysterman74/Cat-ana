@@ -4,6 +4,8 @@ using System.Collections;
 public class Yarnball : MonoBehaviour {
     private Vector2 externalVelocity;
     private bool thrown = false;
+    //Boolean to check if the ball has been first launched.
+    private bool launched = false;
     private bool facingRight = false;
     private bool onConveyorBelt = false;
 
@@ -19,6 +21,7 @@ public class Yarnball : MonoBehaviour {
 	void Start () {
         GetComponent<Collider2D>().isTrigger = true;
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
+        Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("Enemy"));
         GetComponent<Rigidbody2D>().isKinematic = true;
 
         groundCheck = transform.FindChild("SeedGroundCheck").gameObject;
@@ -44,6 +47,7 @@ public class Yarnball : MonoBehaviour {
             GetComponent<Rigidbody2D>().isKinematic = true;
             col.gameObject.SendMessage("PickupYarn");
             thrown = false;
+            launched = false;
         }
     }
 
@@ -64,6 +68,7 @@ public class Yarnball : MonoBehaviour {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(-charge * 13.5f, charge * 3.5f));
         StartCoroutine(resetCollider());
         thrown = true;
+        launched = true;
     }
 
     IEnumerator resetCollider()
@@ -89,10 +94,16 @@ public class Yarnball : MonoBehaviour {
 
     public void stopOnGround()
     {
-        if (isOnGround)
+        if (isOnGround && launched)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+            launched = false;
         }
+    }
+
+    public bool seedOnGround()
+    {
+        return isOnGround;
     }
 }
 

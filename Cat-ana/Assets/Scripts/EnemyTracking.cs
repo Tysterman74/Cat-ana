@@ -8,7 +8,9 @@ public class EnemyTracking : MonoBehaviour {
 	public float defaultSpeed = 3.0f;
 	public float alertedSpeed = 10.0f;
 	public int defaultAlertTimer = 100; // Enemy will not be alarmed after certain time. (This may not be needed)
-    public int defaultTurnAroundTimer = 400; //even if the enemy doesn't reach the end point, it will turn around after certain time
+    public float defaultTurnAroundTimer = 3.0f; //even if the enemy doesn't reach the end point, it will turn around after certain time
+	public float distractedTimer = 3.0f;
+	public static float defaultDistractTime = 3.0f; 
 	public float travelingRadius = 10.0f;
     public bool facingRight; //true means right
 	//public float alertedDistance = 15.0f;
@@ -17,7 +19,7 @@ public class EnemyTracking : MonoBehaviour {
     private GameObject point1;
     private GameObject point2;
     private GameObject enemy;
-
+    private GameObject flower;
 
 
     private Vector2 direction;
@@ -28,8 +30,9 @@ public class EnemyTracking : MonoBehaviour {
     private bool idle; // when enemy reaches the endpoint, the enemy is in state of idle
 	private float velocity;
 	private bool detectedPlayer;
+	private bool detectedFlower;
 	private int alertTimer; //this is for the time when enemy loses the sight of player
-    private int turnAroundTimer; //this is for the time when enemy needs to turn around
+    private float turnAroundTimer; //this is for the time when enemy needs to turn around
 	private Vector3 directionVector;
 
 	private Vector3 centerPoint;
@@ -62,14 +65,16 @@ public class EnemyTracking : MonoBehaviour {
         point1 = transform.FindChild("EndPoint1").gameObject;
         point2 = transform.FindChild("EndPoint2").gameObject;
         enemy = transform.FindChild("Enemy").gameObject;
-
+        flower = null;
 
         atAbsoluteEndPoint = false;
         atEndPoint = false;
         idle = false;
 		detectedPlayer = false;
+		detectedFlower = false;
 		velocity = defaultSpeed;
 		alertTimer = defaultAlertTimer;
+        turnAroundTimer = defaultTurnAroundTimer;
         direction = Vector2.right;
         
 		directionVector =  new Vector3(viewDistance, 0.0f);
@@ -94,8 +99,10 @@ public class EnemyTracking : MonoBehaviour {
 
 			if (detect[i].collider.tag == "Player"){
 				detectedPlayer = true;
-                //reset the timer
+                //reset the timers
                 alertTimer = defaultAlertTimer;
+				//in case had seen flower first but player overrides, we need to reset the flower timer as well 
+				distractedTimer = defaultDistractTime;
 
 				//for complex AI on how enemy reacts to player's presence
 				//updateCenterPoint (1,detect[i].collider.transform.position);
@@ -105,9 +112,10 @@ public class EnemyTracking : MonoBehaviour {
 				break;
 			}
 
-            else if (detect[i].collider.tag == "Yarnball")
+            else if (detect[i].collider.tag == "Flower")
             {
-
+				detectedFlower = true; 
+              
             }
 
             //this may be changed to else statement such that enemy turns around if it detects anything but player.
@@ -151,11 +159,48 @@ public class EnemyTracking : MonoBehaviour {
         }
         else if (idle)
         {
+<<<<<<< HEAD
             //decrease direction timer by 1 every tick
             turnAroundTimer -= 1;
             //print("Intersect: " + intersectEndPoint());
 
             //if collides with endpoints while not detected
+=======
+
+            if (turnAroundTimer <= 0.0f)
+            {
+                //decrease direction timer by 1 every tick
+                //turnAroundTimer -= 1;
+                //print("Intersect: " + intersectEndPoint());
+
+                //if collides with endpoints while not detected
+                //if (atEndPoint)
+                //{
+                //    print("Turning");
+                //    //then update its direction
+                //    updateDirection();
+                //    //and reset timer
+                //    turnAroundTimer = defaultTurnAroundTimer;
+                //}
+                //else if (turnAroundTimer <= 0)
+                //{
+                //    facingRight = !facingRight;
+                //    turnAroundTimer = defaultTurnAroundTimer;
+                //}
+                //facingRight != facingRight;
+                facingRight = !facingRight;
+                //turning = true;
+                //updateDirection();
+                atEndPoint = false;
+                turnAroundTimer = defaultTurnAroundTimer;
+            }
+            else
+            {
+                print("asd");
+                turnAroundTimer -= Time.deltaTime;
+            }
+            //print(turnAroundTimer);
+>>>>>>> 82c9d19d54d9297bd5c70e32f9e264aadab7945f
 
             //then update its direction
             updateDirection();
@@ -220,22 +265,64 @@ public class EnemyTracking : MonoBehaviour {
             else
                 alertTimer -= 1;
         }
+<<<<<<< HEAD
         //if player is not detected, set speed to default speed
         else if (idle)
         {
             velocity = 0;
         }
+=======
+		else if(detectedFlower){
+
+			//calculate distance. Stop if certain distance away 
+			float distance = Vector2.Distance(enemy.transform.position, GameObject.FindWithTag("Flower").transform.position);
+			//flower = detect[i].collider.gameObject;
+			print(distance);
+			
+			if (distance <= 2.0f)
+			{
+				print("enemy stops");
+				velocity = 0.0f;
+				
+				if (distractedTimer <= 0.0f)
+				{ //if time is up, kill the flower
+					print("kill flower");
+					Destroy(GameObject.FindWithTag("Flower"));
+					//reset timer
+					distractedTimer = defaultDistractTime;
+					//reset detectedFlower
+					detectedFlower = false; 
+				}
+				else
+				{
+					//subtract time from distracted timer
+					print("time to destroy: " + distractedTimer);
+					
+					distractedTimer -= Time.deltaTime;
+				}
+			}
+
+		}
+        //if player and flower are not detected, set speed to default speed
+>>>>>>> 82c9d19d54d9297bd5c70e32f9e264aadab7945f
         else
         {
             if (facingRight)
             {
-                velocity = defaultSpeed;
                 direction = Vector2.right;
             }
             else
             {
-                velocity = defaultSpeed;
                 direction = -Vector2.right;
+            }
+
+            if (!atEndPoint)
+            {
+                velocity = defaultSpeed;
+            }
+            else
+            {
+                velocity = 0.0f;
             }
         }
 
@@ -291,11 +378,19 @@ public class EnemyTracking : MonoBehaviour {
 		//return enemy.GetComponent<Renderer>().bounds.Intersects(point1.GetComponent<Renderer>().bounds) || enemy.GetComponent<Renderer>().bounds.Intersects(point2.GetComponent<Renderer>().bounds);
 	}
 
+<<<<<<< HEAD
 
     //void setAtEndPoint(bool b) 
     //{
     //    print("setting");
     //    atEndPoint = b;
     //}
+=======
+    public void setAtEndPoint(bool b) 
+    {
+        print("setting");
+        atEndPoint = b;
+    }
+>>>>>>> 82c9d19d54d9297bd5c70e32f9e264aadab7945f
 	
 }

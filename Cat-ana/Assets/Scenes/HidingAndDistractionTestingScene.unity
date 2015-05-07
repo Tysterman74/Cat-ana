@@ -133,7 +133,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ab983594e586994c852503467026032, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &226116870
+--- !u!1 &226116870 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 136516, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
   m_PrefabInternal: {fileID: 2095381637}
@@ -750,14 +750,6 @@ Prefab:
     - target: {fileID: 495702, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11418910, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
-      propertyPath: speed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 11407956, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
-      propertyPath: hidingButton
-      value: 102
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81ae153da6b5f4743962c66f2e37b1e0, type: 2}
