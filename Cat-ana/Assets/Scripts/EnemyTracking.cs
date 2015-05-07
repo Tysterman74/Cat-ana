@@ -158,7 +158,7 @@ public class EnemyTracking : MonoBehaviour {
         else if (flower != null){
 
 			//calculate distance. Stop if certain distance away 
-			float distance = Vector3.Distance(transform.position,GameObject.FindWithTag("Flower").transform.position);
+			float distance = Vector3.Distance(enemy.transform.position,GameObject.FindWithTag("Flower").transform.position);
 			print (distance);
 
 			if(distance <= 2.0 ){
