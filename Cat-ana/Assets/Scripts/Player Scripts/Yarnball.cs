@@ -19,6 +19,7 @@ public class Yarnball : MonoBehaviour {
 	void Start () {
         GetComponent<Collider2D>().isTrigger = true;
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
+        Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("Enemy"));
         GetComponent<Rigidbody2D>().isKinematic = true;
 
         groundCheck = transform.FindChild("SeedGroundCheck").gameObject;
