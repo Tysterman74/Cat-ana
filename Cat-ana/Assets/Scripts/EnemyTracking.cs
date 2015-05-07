@@ -22,8 +22,10 @@ public class EnemyTracking : MonoBehaviour {
 
     private Vector2 direction;
 
-    private bool turning;
+
+    private bool atAbsoluteEndPoint;
     private bool atEndPoint;
+    private bool idle; // when enemy reaches the endpoint, the enemy is in state of idle
 	private float velocity;
 	private bool detectedPlayer;
 	private int alertTimer; //this is for the time when enemy loses the sight of player
@@ -45,7 +47,10 @@ public class EnemyTracking : MonoBehaviour {
     //4. Implement attack for enemy: melee, range
     //
 
-
+    //UPATED THINGS TO WORK ON:
+    //1. Add Absolute End Points: enemy must not fall out of platform, or get in a situation where it cannot return to its regular patrol
+    //2. Enemy attacks player -> probably send message that player is attacked
+    //3. 
 
 
 
@@ -59,9 +64,9 @@ public class EnemyTracking : MonoBehaviour {
         enemy = transform.FindChild("Enemy").gameObject;
 
 
-
-        turning = false;
+        atAbsoluteEndPoint = false;
         atEndPoint = false;
+        idle = false;
 		detectedPlayer = false;
 		velocity = defaultSpeed;
 		alertTimer = defaultAlertTimer;
@@ -128,53 +133,43 @@ public class EnemyTracking : MonoBehaviour {
 		//always update end point based on the center point calculation.
 		//updateEndPoints();
 
+        if (atEndPoint)
+        {
+            print("working");
+            idle = true;
+        }
+
 		//special case: if player is detected, ignore normal behaviour
         if (detectedPlayer)
         {
-            velocity = alertedSpeed;
+            idle = false;
+            turnAroundTimer = defaultTurnAroundTimer;
             updateSpecialDirection();
 
 
 
         }
-        else if (atEndPoint)
+        else if (idle)
         {
             //decrease direction timer by 1 every tick
-            //turnAroundTimer -= 1;
+            turnAroundTimer -= 1;
             //print("Intersect: " + intersectEndPoint());
 
             //if collides with endpoints while not detected
-           //if (atEndPoint)
-           //{
-           //    print("Turning");
-           //    //then update its direction
-           //    updateDirection();
-           //    //and reset timer
-           //    turnAroundTimer = defaultTurnAroundTimer;
-           //}
-           //else if (turnAroundTimer <= 0)
-           //{
-           //    facingRight = !facingRight;
-           //    turnAroundTimer = defaultTurnAroundTimer;
-           //}
-            //facingRight != facingRight;
-            facingRight = !facingRight;
-            //turning = true;
-            //updateDirection();
-            atEndPoint = false;
-            //print(turnAroundTimer);
 
+            //then update its direction
+            updateDirection();
+            //and reset timer
+
+
+            if (turnAroundTimer <= 0)
+            {
+                facingRight = !facingRight;
+                turnAroundTimer = defaultTurnAroundTimer;
+                idle = false;
+            }
         }
-        //else if (turning) 
-        //{
-        //    turnAroundTimer -= 1;
-        //    if (turnAroundTimer <= 0)
-        //    {
-        //        turning = false;
-        //        facingRight = !facingRight;
-        //        updateDirection();
-        //    }
-        //}
+
 		
         //based on the above calculation, set the actual direction and detection line
         if (facingRight)
@@ -226,6 +221,10 @@ public class EnemyTracking : MonoBehaviour {
                 alertTimer -= 1;
         }
         //if player is not detected, set speed to default speed
+        else if (idle)
+        {
+            velocity = 0;
+        }
         else
         {
             if (facingRight)
@@ -285,17 +284,18 @@ public class EnemyTracking : MonoBehaviour {
 	}
 	
     //if an enemy touches any chosen endpoint, return true
-	bool intersectEndPoint()
+	public void intersectEndPoint(bool b)
 	{
-        return (enemy.transform.position.x == point1.transform.position.x && enemy.transform.position.y == point1.transform.position.y)
-            || (enemy.transform.position.x == point2.transform.position.x && enemy.transform.position.y == point2.transform.position.y);
+        atEndPoint = b;
+        print("working");
 		//return enemy.GetComponent<Renderer>().bounds.Intersects(point1.GetComponent<Renderer>().bounds) || enemy.GetComponent<Renderer>().bounds.Intersects(point2.GetComponent<Renderer>().bounds);
 	}
 
-    void setAtEndPoint(bool b) 
-    {
-        print("setting");
-        atEndPoint = b;
-    }
+
+    //void setAtEndPoint(bool b) 
+    //{
+    //    print("setting");
+    //    atEndPoint = b;
+    //}
 	
 }
