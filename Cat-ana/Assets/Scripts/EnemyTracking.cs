@@ -10,6 +10,7 @@ public class EnemyTracking : MonoBehaviour {
 	public int defaultAlertTimer = 100; // Enemy will not be alarmed after certain time. (This may not be needed)
     public float defaultTurnAroundTimer = 3.0f; //even if the enemy doesn't reach the end point, it will turn around after certain time
 	public float distractedTimer = 3.0f;
+	public static float defaultDistractTime = 3.0f; 
 	public float travelingRadius = 10.0f;
     public bool facingRight; //true means right
 	//public float alertedDistance = 15.0f;
@@ -91,8 +92,10 @@ public class EnemyTracking : MonoBehaviour {
 
 			if (detect[i].collider.tag == "Player"){
 				detectedPlayer = true;
-                //reset the timer
+                //reset the timers
                 alertTimer = defaultAlertTimer;
+				//in case had seen flower first but player overrides, we need to reset the flower timer as well 
+				distractedTimer = defaultDistractTime;
 
 				//for complex AI on how enemy reacts to player's presence
 				//updateCenterPoint (1,detect[i].collider.transform.position);
@@ -112,11 +115,14 @@ public class EnemyTracking : MonoBehaviour {
 				{ //if time is up, kill the flower
 					print ("kill flower");
 					Destroy (GameObject.FindWithTag("Flower"));
+					//reset timer
+					distractedTimer = defaultDistractTime;
 				}
 				else
 				{ 
 					//subtract time from distracted timer
-					print("subtractTime");
+					print("time to destroy: " + distractedTimer);
+
 					distractedTimer -= Time.deltaTime;
 				}
 
@@ -158,7 +164,7 @@ public class EnemyTracking : MonoBehaviour {
         else if (flower != null){
 
 			//calculate distance. Stop if certain distance away 
-			float distance = Vector3.Distance(transform.position,GameObject.FindWithTag("Flower").transform.position);
+			float distance = Vector3.Distance(enemy.transform.position,GameObject.FindWithTag("Flower").transform.position);
 			print (distance);
 
 			if(distance <= 2.0 ){
