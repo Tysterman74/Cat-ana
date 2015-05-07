@@ -9,7 +9,7 @@ public class EnemyTracking : MonoBehaviour {
 	public float alertedSpeed = 10.0f;
 	public int defaultAlertTimer = 100; // Enemy will not be alarmed after certain time. (This may not be needed)
     public float defaultTurnAroundTimer = 3.0f; //even if the enemy doesn't reach the end point, it will turn around after certain time
-	public float distractedTimer = 10.0f;
+	public float distractedTimer = 3.0f;
 	public float travelingRadius = 10.0f;
     public bool facingRight; //true means right
 	//public float alertedDistance = 15.0f;
@@ -114,10 +114,7 @@ public class EnemyTracking : MonoBehaviour {
 					Destroy (GameObject.FindWithTag("Flower"));
 				}
 				else
-				{ //calculate distance. Stop if certain distance away 
-
-					float distance = Vector3.Distance(transform.position,GameObject.FindWithTag("Flower").transform.position);
-					print (distance);
+				{ 
 					//subtract time from distracted timer
 					print("subtractTime");
 					distractedTimer -= Time.deltaTime;
@@ -158,9 +155,16 @@ public class EnemyTracking : MonoBehaviour {
 
 
         }
-        else if (flower != null)
-        {
-            //PUT YOUR CODE HURRRR HEATHER
+        else if (flower != null){
+
+			//calculate distance. Stop if certain distance away 
+			float distance = Vector3.Distance(transform.position,GameObject.FindWithTag("Flower").transform.position);
+			print (distance);
+
+			if(distance <= 2.0 ){
+				print ("enemy stops");
+				enemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			}
         }
         else if (atEndPoint)
         {
