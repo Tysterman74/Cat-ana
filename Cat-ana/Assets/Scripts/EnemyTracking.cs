@@ -25,7 +25,7 @@ public class EnemyTracking : MonoBehaviour {
     private Vector2 direction;
 
 
-    private bool atAbsoluteEndPoint;
+    
     private bool atEndPoint;
     private bool idle; // when enemy reaches the endpoint, the enemy is in state of idle
 	private float velocity;
@@ -67,7 +67,7 @@ public class EnemyTracking : MonoBehaviour {
         enemy = transform.FindChild("Enemy").gameObject;
         flower = null;
 
-        atAbsoluteEndPoint = false;
+        
         atEndPoint = false;
         idle = false;
 		detectedPlayer = false;
@@ -96,8 +96,9 @@ public class EnemyTracking : MonoBehaviour {
 		//raise detection flag if player is detected, reset detection counter
 		for (int i = 0; i < detect.Length; i++) {
 			//print (detect[i].collider.name);
-
-			if (detect[i].collider.tag == "Player"){
+            string s = detect[i].collider.tag;
+            print(s);
+			if (s == "Player"){
 				detectedPlayer = true;
                 //reset the timers
                 alertTimer = defaultAlertTimer;
@@ -112,20 +113,20 @@ public class EnemyTracking : MonoBehaviour {
 				break;
 			}
 
-            else if (detect[i].collider.tag == "Flower")
+            else if (s == "Flower")
             {
 				detectedFlower = true; 
               
             }
 
             //this may be changed to else statement such that enemy turns around if it detects anything but player.
-            else if (detect[i].collider.tag == "Wall")
-            {
+            //else if (s.Substring(s.Length-4) == "Wall")
+            //{
                 //change direction
-                facingRight = !facingRight;
+            //    facingRight = !facingRight;
                 //and update center point
                 //updateCenterPoint(2, enemy.transform.position);
-            }
+            //}
 
 		}
 
@@ -159,13 +160,13 @@ public class EnemyTracking : MonoBehaviour {
         }
         else if (idle)
         {
-<<<<<<< HEAD
+
             //decrease direction timer by 1 every tick
             turnAroundTimer -= 1;
             //print("Intersect: " + intersectEndPoint());
 
             //if collides with endpoints while not detected
-=======
+
 
             if (turnAroundTimer <= 0.0f)
             {
@@ -196,11 +197,11 @@ public class EnemyTracking : MonoBehaviour {
             }
             else
             {
-                print("asd");
+                //print("asd");
                 turnAroundTimer -= Time.deltaTime;
             }
             //print(turnAroundTimer);
->>>>>>> 82c9d19d54d9297bd5c70e32f9e264aadab7945f
+
 
             //then update its direction
             updateDirection();
@@ -265,28 +266,28 @@ public class EnemyTracking : MonoBehaviour {
             else
                 alertTimer -= 1;
         }
-<<<<<<< HEAD
+
         //if player is not detected, set speed to default speed
         else if (idle)
         {
             velocity = 0;
         }
-=======
+
 		else if(detectedFlower){
 
 			//calculate distance. Stop if certain distance away 
 			float distance = Vector2.Distance(enemy.transform.position, GameObject.FindWithTag("Flower").transform.position);
 			//flower = detect[i].collider.gameObject;
-			print(distance);
+			//print(distance);
 			
 			if (distance <= 2.0f)
 			{
-				print("enemy stops");
+				//print("enemy stops");
 				velocity = 0.0f;
 				
 				if (distractedTimer <= 0.0f)
 				{ //if time is up, kill the flower
-					print("kill flower");
+					//print("kill flower");
 					Destroy(GameObject.FindWithTag("Flower"));
 					//reset timer
 					distractedTimer = defaultDistractTime;
@@ -296,7 +297,7 @@ public class EnemyTracking : MonoBehaviour {
 				else
 				{
 					//subtract time from distracted timer
-					print("time to destroy: " + distractedTimer);
+					//print("time to destroy: " + distractedTimer);
 					
 					distractedTimer -= Time.deltaTime;
 				}
@@ -304,7 +305,7 @@ public class EnemyTracking : MonoBehaviour {
 
 		}
         //if player and flower are not detected, set speed to default speed
->>>>>>> 82c9d19d54d9297bd5c70e32f9e264aadab7945f
+
         else
         {
             if (facingRight)
@@ -334,14 +335,10 @@ public class EnemyTracking : MonoBehaviour {
 		//nothing for now
 	}
 
-    //may need to get re-coded
-	void updateDirection()
+    //switch direction. Mainly used for EndPoint's OnTriggerEnter function
+	public void updateDirection()
 	{
-
-
-		//face right if enemy intersects the left endpoint
-		//facingRight = enemy.GetComponent<Renderer>().bounds.Intersects(point1.GetComponent<Renderer>().bounds);
-		
+        facingRight = !facingRight;
 	}
 
 	//update the center point where enemy patrols
@@ -363,34 +360,16 @@ public class EnemyTracking : MonoBehaviour {
 	}
 
 	//update the position of left and right end points.
-	void updateEndPoints()
-	{
-		
-		point1.transform.position = centerPoint - radius;
-		point2.transform.position = centerPoint + radius;
-	}
+	//void updateEndPoints()
+	//{
+	//	point1.transform.position = centerPoint - radius;
+	//	point2.transform.position = centerPoint + radius;
+	//}
 	
     //if an enemy touches any chosen endpoint, return true
-	public void intersectEndPoint(bool b)
-	{
-        atEndPoint = b;
-        print("working");
-		//return enemy.GetComponent<Renderer>().bounds.Intersects(point1.GetComponent<Renderer>().bounds) || enemy.GetComponent<Renderer>().bounds.Intersects(point2.GetComponent<Renderer>().bounds);
-	}
 
-<<<<<<< HEAD
 
-    //void setAtEndPoint(bool b) 
-    //{
-    //    print("setting");
-    //    atEndPoint = b;
-    //}
-=======
-    public void setAtEndPoint(bool b) 
-    {
-        print("setting");
-        atEndPoint = b;
-    }
->>>>>>> 82c9d19d54d9297bd5c70e32f9e264aadab7945f
+
+
 	
 }
