@@ -9,3 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/WinScreen.unity
   - enabled: 1
     path: Assets/Scenes/DesignPlayground.unity
+  - enabled: 1
+    path: Assets/Scenes/Tutorial1.unity
+  - enabled: 1
+    path: Assets/Scenes/Tutorial2.unity
