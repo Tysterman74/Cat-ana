@@ -168,6 +168,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: fdf63bdf1d5346444be3a04d60f3a239, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -11.4799995
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: fdf63bdf1d5346444be3a04d60f3a239, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .140000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: fdf63bdf1d5346444be3a04d60f3a239, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 11.2399998
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: fdf63bdf1d5346444be3a04d60f3a239, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .0799999982
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdf63bdf1d5346444be3a04d60f3a239, type: 2}
   m_IsPrefabParent: 0
@@ -455,7 +471,7 @@ GameObject:
   - 23: {fileID: 1313911329}
   - 61: {fileID: 1313911328}
   m_Layer: 0
-  m_Name: Westwall
+  m_Name: WestWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

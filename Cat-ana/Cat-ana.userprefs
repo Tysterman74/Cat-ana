@@ -1,9 +1,16 @@
 ﻿<Properties>
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyTracking.cs">
+    <Files>
+      <File FileName="Assets\Scripts\EnemyTracking.cs" Line="1" Column="1" />
+=======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyTracking.cs">
     <Files>
       <File FileName="Assets/Scripts/EnemyTracking.cs" Line="344" Column="1" />
       <File FileName="Assets/Scripts/Flower.cs" Line="59" Column="1" />
+>>>>>>> 82c9d19d54d9297bd5c70e32f9e264aadab7945f
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
