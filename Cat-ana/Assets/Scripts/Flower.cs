@@ -5,9 +5,13 @@ public class Flower : MonoBehaviour {
 
     public GameObject flower;
     public Transform node;
-    public int spawnTime = 1;
+    public float spawnTime = 1.0f;
+    public float destroyTime = 4.0f;
+    private float currentSpawnTime = 0.0f;
+    private float currentDestroyTime = 0.0f;
 
     private bool seedSpawned = false;
+    private bool flowerAlreadySpawned = false;
 
     private GameObject flowerClone;
 
@@ -23,37 +27,82 @@ public class Flower : MonoBehaviour {
 	void Update () 
     {
         spawnFlower();
+        destroyFlower();
 	}
 
     IEnumerator spawnRoutine()
     {
         yield return new WaitForSeconds(1);
 
-        flowerClone = (GameObject) Instantiate(flower, node.transform.position + new Vector3(0, 0.7f, 0), node.transform.rotation);
-        flowerClone.transform.SetParent(yarnball.transform);
-        Physics2D.IgnoreCollision(flowerClone.GetComponent<Collider2D>(), yarnball.GetComponent<Collider2D>());
-        Physics2D.IgnoreLayerCollision(flowerClone.gameObject.layer, LayerMask.NameToLayer("Enemy"));
+        if (yarnball.seedOnGround())
+        {
+            flowerClone = (GameObject)Instantiate(flower, node.transform.position + new Vector3(0, 0.7f, 0), node.transform.rotation);
+            flowerClone.transform.SetParent(yarnball.transform);
+            Physics2D.IgnoreCollision(flowerClone.GetComponent<Collider2D>(), yarnball.GetComponent<Collider2D>());
+            Physics2D.IgnoreLayerCollision(flowerClone.gameObject.layer, LayerMask.NameToLayer("Enemy"));
+            flowerClone.transform.parent = null;
+        }
     }
 
     void spawnFlower()
     {
-        if (yarnball.seedOnGround())
+        if (ballThrown())
         {
-            if (!seedSpawned)
+            if (yarnball.seedOnGround())
             {
-                StartCoroutine(spawnRoutine());
+                //                StartCoroutine(spawnRoutine());
+                currentSpawnTime += Time.deltaTime;
 
-                seedSpawned = true;
+                if (currentSpawnTime >= spawnTime && !flowerAlreadySpawned)
+                {
+                    Destroy(flowerClone);
+
+                    flowerClone = (GameObject)Instantiate(flower, node.transform.position + new Vector3(0, 0.7f, 0), node.transform.rotation);
+                    flowerClone.transform.SetParent(yarnball.transform);
+                    Physics2D.IgnoreCollision(flowerClone.GetComponent<Collider2D>(), yarnball.GetComponent<Collider2D>());
+                    Physics2D.IgnoreLayerCollision(flowerClone.gameObject.layer, LayerMask.NameToLayer("Enemy"));
+                    flowerClone.transform.parent = null;
+
+                    seedSpawned = true;
+
+                    flowerAlreadySpawned = true;
+
+                    currentSpawnTime = 0.0f;
+                    currentDestroyTime = 0.0f;
+                }
             }
         }
         else
         {
-            if (seedSpawned)
+            flowerAlreadySpawned = false;
+        }
+    }
+
+    void destroyFlower()
+    {
+        if (seedSpawned)
+        {
+            currentDestroyTime += Time.deltaTime;
+
+            if (currentDestroyTime >= destroyTime)
             {
                 Destroy(flowerClone);
-            }
 
-            seedSpawned = false;
+                currentDestroyTime = 0.0f;
+                currentSpawnTime = 0.0f;
+
+                seedSpawned = false;
+            }
+        }       
+    }
+
+    private bool ballThrown()
+    {
+        if (yarnball.transform.parent == null)
+        {
+            return true;
         }
+        else
+            return false;
     }
 }
