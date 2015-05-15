@@ -98,7 +98,6 @@ public class Yarnball : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
             launched = false;
-            //transform.FindChild("
         }
     }
 
