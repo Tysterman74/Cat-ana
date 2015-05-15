@@ -12,10 +12,10 @@ public class Yarnball : MonoBehaviour {
     private GameObject groundCheck;
     private float groundHeight;
 
+    public float throwDistance = 0.3f;
+
     public LayerMask whatIsGround;
     public bool isOnGround = true;
-
-
 
 	// Use this for initialization
 	void Start () {
@@ -25,21 +25,29 @@ public class Yarnball : MonoBehaviour {
         GetComponent<Rigidbody2D>().isKinematic = true;
 
         groundCheck = transform.FindChild("SeedGroundCheck").gameObject;
+
 	}
 	
+
 	// Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (externalVelocity.x != 0)
+        {
             GetComponent<Rigidbody2D>().velocity = externalVelocity;
-
+        }
+        else if (externalVelocity.x == 0 
+                 && GetComponent<Rigidbody2D>().transform.parent != null)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        }
+           
         isOnGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
         stopOnGround();
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        print("Myah");
         if (col.gameObject.tag == "Player")
         {
             GetComponent<Collider2D>().isTrigger = true;
@@ -50,6 +58,7 @@ public class Yarnball : MonoBehaviour {
             launched = false;
         }
     }
+
 
     void setDirection(bool b)
     {
@@ -63,9 +72,9 @@ public class Yarnball : MonoBehaviour {
 
         //Change to grabbing x and y velocity and add in velocity equation.
         if (facingRight)
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(charge * 13.5f, charge * 3.5f));
+            GetComponent<Rigidbody2D>().velocity = new Vector2(charge * throwDistance, charge * 0.035f);
         else
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(-charge * 13.5f, charge * 3.5f));
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-charge * throwDistance, charge * 0.035f);
         StartCoroutine(resetCollider());
         thrown = true;
         launched = true;
@@ -81,9 +90,7 @@ public class Yarnball : MonoBehaviour {
 
     public void setExternalVelocity(Vector2 vel)
     {
-        print(vel);
-        externalVelocity = vel;
-    
+        externalVelocity = vel;    
     }
 
     public bool isThrown() 

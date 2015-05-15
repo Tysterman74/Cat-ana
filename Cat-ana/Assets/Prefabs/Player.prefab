@@ -549,6 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b054a268f8d44df48bf00ab78d544527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwDistance: .300000012
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1

@@ -7,6 +7,7 @@ public class ConveyerBelt : MonoBehaviour {
     public float maxSpeed = 3.0f;
     public bool left = false;
     private bool collide = false;
+    private bool ballOnConveyerBelt = false;
     private GameObject player;
     private GameObject yarn;
     private movePlayer playerComponent;
@@ -37,6 +38,7 @@ public class ConveyerBelt : MonoBehaviour {
             print("SADFDSA");
             yarnComponent.setExternalVelocity(new Vector2(left ? -speed : speed, 0));
             //col.gameObject.SendMessage("setExternalVelocity", new Vector2(left ? -speed : speed, 0));
+            ballOnConveyerBelt = true;
         }
     }
 
@@ -60,6 +62,5 @@ public class ConveyerBelt : MonoBehaviour {
         else if (col.gameObject.tag == "YarnBall")
             collide = true;
     }
-
 
 }

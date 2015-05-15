@@ -30,28 +30,17 @@ public class Flower : MonoBehaviour {
         destroyFlower();
 	}
 
-    IEnumerator spawnRoutine()
-    {
-        yield return new WaitForSeconds(1);
-
-        if (yarnball.seedOnGround())
-        {
-            flowerClone = (GameObject)Instantiate(flower, node.transform.position + new Vector3(0, 0.7f, 0), node.transform.rotation);
-            flowerClone.transform.SetParent(yarnball.transform);
-            Physics2D.IgnoreCollision(flowerClone.GetComponent<Collider2D>(), yarnball.GetComponent<Collider2D>());
-            Physics2D.IgnoreLayerCollision(flowerClone.gameObject.layer, LayerMask.NameToLayer("Enemy"));
-            flowerClone.transform.parent = null;
-        }
-    }
-
     void spawnFlower()
     {
         if (ballThrown())
         {
             if (yarnball.seedOnGround())
             {
-                //                StartCoroutine(spawnRoutine());
-                currentSpawnTime += Time.deltaTime;
+                if (!flowerAlreadySpawned)
+                {
+                    currentSpawnTime += Time.deltaTime;
+                }
+                
 
                 if (currentSpawnTime >= spawnTime && !flowerAlreadySpawned)
                 {
