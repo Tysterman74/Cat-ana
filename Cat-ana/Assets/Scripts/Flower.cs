@@ -50,7 +50,7 @@ public class Flower : MonoBehaviour {
                     flowerClone.transform.SetParent(yarnball.transform);
                     Physics2D.IgnoreCollision(flowerClone.GetComponent<Collider2D>(), yarnball.GetComponent<Collider2D>());
                     Physics2D.IgnoreLayerCollision(flowerClone.gameObject.layer, LayerMask.NameToLayer("Enemy"));
-                    flowerClone.transform.parent = null;
+                    //flowerClone.transform.parent = null;
 
                     seedSpawned = true;
 
