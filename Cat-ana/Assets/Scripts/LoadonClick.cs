@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class LoadonClick : MonoBehaviour
 {
-    public void LoadScene(int level)
+    public string level;
+
+    public void LoadScene(string level)
     {
             Application.LoadLevel(level);
     
