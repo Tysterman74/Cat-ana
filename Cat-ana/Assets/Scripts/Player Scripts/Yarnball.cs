@@ -33,15 +33,20 @@ public class Yarnball : MonoBehaviour {
     void Update()
     {
         print("External Velocity: " + externalVelocity);
+        if (!thrown)
+        {
+            externalVelocity = Vector2.zero;
+        }
+
         if (externalVelocity.x != 0)
         {
             GetComponent<Rigidbody2D>().velocity = externalVelocity;
         }
-        else if (externalVelocity.x == 0 
-                 && GetComponent<Rigidbody2D>().transform.parent != null)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        }
+        //else if (externalVelocity.x == 0 
+        //         && GetComponent<Rigidbody2D>().transform.parent != null)
+        //{
+        //    GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        //}
            
         isOnGround = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, whatIsGround);
         stopOnGround();
@@ -51,6 +56,7 @@ public class Yarnball : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
+            print("OMFG");
             GetComponent<Collider2D>().isTrigger = true;
             Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
             GetComponent<Rigidbody2D>().isKinematic = true;

@@ -28,6 +28,7 @@ public class ConveyerBelt : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D col)
     {
+        print("penis");
         if (col.gameObject.tag == "Player")
         {
             playerComponent.setExternalVelocity(new Vector2(left ? -speed : speed, 0));
@@ -36,7 +37,6 @@ public class ConveyerBelt : MonoBehaviour {
         }
         else if (col.gameObject.tag == "YarnBall")
         {
-            print("penis");
             yarnComponent.setExternalVelocity(new Vector2(left ? -speed : speed, 0));
             //col.gameObject.SendMessage("setExternalVelocity", new Vector2(left ? -speed : speed, 0));
             ballOnConveyerBelt = true;
