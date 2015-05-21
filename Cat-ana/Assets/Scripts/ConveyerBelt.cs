@@ -36,6 +36,7 @@ public class ConveyerBelt : MonoBehaviour {
         }
         else if (col.gameObject.tag == "YarnBall")
         {
+            print("penis");
             yarnComponent.setExternalVelocity(new Vector2(left ? -speed : speed, 0));
             //col.gameObject.SendMessage("setExternalVelocity", new Vector2(left ? -speed : speed, 0));
             ballOnConveyerBelt = true;

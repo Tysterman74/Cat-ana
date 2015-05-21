@@ -32,6 +32,7 @@ public class Yarnball : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
+        print("External Velocity: " + externalVelocity);
         if (externalVelocity.x != 0)
         {
             GetComponent<Rigidbody2D>().velocity = externalVelocity;
@@ -54,6 +55,7 @@ public class Yarnball : MonoBehaviour {
             Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
             GetComponent<Rigidbody2D>().isKinematic = true;
             col.gameObject.SendMessage("PickupYarn");
+            externalVelocity = Vector2.zero;
             thrown = false;
             launched = false;
         }
