@@ -113,7 +113,7 @@ public class EnemyTracking : MonoBehaviour {
 				break;
 			}
 
-            else if (s == "Flower")
+            else if (s == "FlowerSeed")
             {
 				detectedFlower = true; 
               
@@ -288,7 +288,7 @@ public class EnemyTracking : MonoBehaviour {
 				if (distractedTimer <= 0.0f)
 				{ //if time is up, kill the flower
 					//print("kill flower");
-					Destroy(GameObject.FindWithTag("Flower"));
+					Destroy(GameObject.FindWithTag("FlowerSeed"));
 					//reset timer
 					distractedTimer = defaultDistractTime;
 					//reset detectedFlower

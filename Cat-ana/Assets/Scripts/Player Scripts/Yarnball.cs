@@ -19,6 +19,7 @@ public class Yarnball : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        print("layer: " + LayerMask.LayerToName(this.gameObject.layer));
         GetComponent<Collider2D>().isTrigger = true;
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
         Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("Enemy"));
