@@ -29,7 +29,7 @@ public class BoxHidingScript : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == "Hidden")
+        if (col.tag == "Hidden" || col.tag == "Player")
         {
             col.gameObject.SendMessage("setNearHidable", false);
         }
