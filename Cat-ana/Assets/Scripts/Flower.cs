@@ -27,7 +27,6 @@ public class Flower : MonoBehaviour {
 	void Update () 
     {
         spawnFlower();
-        destroyFlower();
 	}
 
     void spawnFlower()
@@ -50,40 +49,22 @@ public class Flower : MonoBehaviour {
                     flowerClone.transform.SetParent(yarnball.transform);
                     Physics2D.IgnoreCollision(flowerClone.GetComponent<Collider2D>(), yarnball.GetComponent<Collider2D>());
                     Physics2D.IgnoreLayerCollision(flowerClone.gameObject.layer, LayerMask.NameToLayer("Enemy"));
-                    //flowerClone.transform.parent = null;
 
                     seedSpawned = true;
 
                     flowerAlreadySpawned = true;
 
                     currentSpawnTime = 0.0f;
-                    currentDestroyTime = 0.0f;
                 }
             }
         }
         else
         {
             flowerAlreadySpawned = false;
+            Destroy(flowerClone);
         }
     }
 
-    void destroyFlower()
-    {
-        if (seedSpawned)
-        {
-            currentDestroyTime += Time.deltaTime;
-
-            if (currentDestroyTime >= destroyTime)
-            {
-                Destroy(flowerClone);
-
-                currentDestroyTime = 0.0f;
-                currentSpawnTime = 0.0f;
-
-                seedSpawned = false;
-            }
-        }       
-    }
 
     private bool ballThrown()
     {
